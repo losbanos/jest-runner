@@ -13,7 +13,7 @@
 import { LAYOUT_TYPES } from '@/components/common/constants';
 import CheckLanguage from '@/components/layouts/CheckLanguage';
 import Currency from '@/components/currency/Currency';
-import {onErrorImageLoad} from '@/components/currency/CurrencyUtil';
+import { onErrorImageLoad } from '@/components/currency/CurrencyUtil';
 // import { CallSwPersons } from '@/components/sw/CallStarWars';
 
 export default {

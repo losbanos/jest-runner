@@ -6,15 +6,6 @@ export const EVENT_TYPES = {
     MOUSE_DOWN: 'mouse-down',
     MOUSE_MOVE: 'mouse-move'
 };
-export const LANGUAGES = {
-    EN: 'English',
-    CH: 'China',
-    KO: 'Korea',
-    PH: 'Philippin',
-    GE: 'German',
-    US: 'America',
-    FR: 'France'
-};
 
 export const BASE_URL = {
     HACKERS_NEWS: '//hn.algolia.com/api/v1/search_by_date',

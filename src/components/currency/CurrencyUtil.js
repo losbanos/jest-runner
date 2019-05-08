@@ -1,8 +1,7 @@
 export const onErrorImageLoad = function (event, type) {
-    console.log(event.target);
-    event.target.removeEventListener(event.type, onErrorImageLoad);
-    event.target.src = '';
-}
+    console.log(event, type);
+};
 export const onErrorHandler = function (event, type) {
+    console.log(event, type);
     return false;
-}
+};

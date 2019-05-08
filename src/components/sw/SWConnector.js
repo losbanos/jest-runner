@@ -1,29 +1,25 @@
 import axios from 'axios';
-import { BASE_URL, SW_CATEGORY, DEFAULT_LOCALE } from '@/components/common/constants';
+import { BASE_URL, DEFAULT_LOCALE } from '@/components/common/constants';
+import { LANGUAGES } from '@/components/common/constants-mini';
 
-const LANGUAGES = {
-    EN: 'English',
-    CH: 'China',
-    KO: 'Korea',
-    PH: 'Philippin',
-    GE: 'German',
-    US: 'America',
-    FR: 'France'
-};
-export class SWConnector {
-    constructor() {
-        this.super();
-    }
-    getFilm(title) {
-        const url = `${BASE_URL.SW}/films/`;
-        return axios.get(url, {
-            params: {
-                search: title,
-                format: 'json'
-            }
-        }).then(res => res.data);
-    }
-}
+// export class SWConnector {
+//     constructor() {
+//         this.super();
+//     }
+//     getFilm(title) {
+//         const url = `${BASE_URL.SW}/films/`;
+//         return axios.get(url, {
+//             params: {
+//                 search: title,
+//                 format: 'json'
+//             }
+//         }).then(res => res.data);
+//     }
+// }
 export const getCategory = function () {
-    return LANGUAGES[DEFAULT_LOCALE];
+    const lang = LANGUAGES[DEFAULT_LOCALE];
+    return lang;
+};
+export const getLanguages = function () {
+    return LANGUAGES;
 };
