@@ -1,7 +1,7 @@
 export const LANGUAGES = {
     EN: 'English',
     CH: 'China',
-    KO: 'Korea',
+    KR: 'Korean',
     PH: 'Philippin',
     GE: 'German',
     US: 'America',
