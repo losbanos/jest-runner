@@ -11,15 +11,7 @@ export const BASE_URL = {
     HACKERS_NEWS: '//hn.algolia.com/api/v1/search_by_date',
     SW: 'https://swapi.co/api'
 };
-export const LANGUAGES = {
-    EN: 'English',
-    CH: 'China',
-    KR: 'Korean',
-    PH: 'Philippin',
-    GE: 'German',
-    US: 'America',
-    FR: 'France'
-};
+
 export const currentLanguage = function () {
     return 'EN';
 };

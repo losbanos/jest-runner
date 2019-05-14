@@ -1,6 +1,6 @@
 export const LANGUAGES = {
     EN: 'English',
-    CH: 'China',
+    CN: 'China',
     KR: 'Korean',
     PH: 'Philippin',
     GE: 'German',
