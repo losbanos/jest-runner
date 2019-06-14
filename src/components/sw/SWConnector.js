@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {BASE_URL, currentLanguage, DEFAULT_LOCALE } from '@/components/common/constants';
-import { LANGUAGES } from '@/components/common/constants-mini';
 
 // export class SWConnector {
 //     constructor() {
@@ -16,9 +15,9 @@ import { LANGUAGES } from '@/components/common/constants-mini';
 //         }).then(res => res.data);
 //     }
 // }
-export const getCategory = function () {
-    return LANGUAGES[DEFAULT_LOCALE];
-};
-export const getCurrentLanguage = function () {
-    return LANGUAGES[currentLanguage()];
-};
+// export const getCategory = function () {
+//     return LANGUAGES[DEFAULT_LOCALE];
+// };
+// export const getCurrentLanguage = function () {
+//     return LANGUAGES[currentLanguage()];
+// };
