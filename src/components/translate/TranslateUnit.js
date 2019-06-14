@@ -11,4 +11,4 @@ export default class TranslateUnit {
     getName() {
         return this.name;
     }
-};
+}

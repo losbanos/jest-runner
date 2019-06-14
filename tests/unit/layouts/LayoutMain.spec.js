@@ -3,34 +3,26 @@
 import { getMeetingWord } from '@/components/translate/TranslateService';
 import TranslateUnit from '@/components/translate/TranslateUnit';
 
-jest.mock('@/components/translate/TranslateModule', () => {
-    return {
-        getTranslations: () => {
-            return {
-                strings: {
-                    korea: {
-                        greeting: '안녕',
-                        bye: '잘가'
-                    },
-                    malaysian: {
-                        greeting: 'ya',
-                        bye: 'tidak'
-                    }
-                }
-            };
+jest.mock('@/components/translate/TranslateModule', () => ({
+    getTranslations: () => ({
+        strings: {
+            korea: {
+                greeting: '안녕',
+                bye: '잘가'
+            },
+            malaysian: {
+                greeting: 'ya',
+                bye: 'tidak'
+            }
         }
-    };
-});
+    })
+}));
 
-jest.mock('@/components/translate/TranslateUnit', () => {
-    return jest.fn().mockImplementation(() => {
-        return {
-            name: 'ABC',
-            getName: () => 'KTH',
-            setName: name => this.name = name
-        };
-    });
-});
+jest.mock('@/components/translate/TranslateUnit', () => jest.fn().mockImplementation(() => ({
+    name: 'ABC',
+    getName: () => 'KTH',
+    setName: name => this.name = name
+})));
 
 describe('LayoutMain 정상 마운트', () => {
     beforeEach(() => jest.resetModules());
@@ -44,7 +36,7 @@ describe('LayoutMain 정상 마운트', () => {
         it('get Current Language', () => {
             jest.mock('@/components/translate/TranslateModule',
                 () => ({ getCurrentNation: () => 'PH' }));
-            const { getCurrentLanguage } = require('@/components/translate/TranslateService')
+            const { getCurrentLanguage } = require('@/components/translate/TranslateService');
             expect(getCurrentLanguage()).toEqual('Philippin');
         });
     });
@@ -59,6 +51,6 @@ describe('LayoutMain 정상 마운트', () => {
             const trans = new TranslateUnit();
             expect(TranslateUnit.mock.calls.length).toEqual(1);
             expect(trans.getName()).toBe('KTH');
-        })
+        });
     });
 });
