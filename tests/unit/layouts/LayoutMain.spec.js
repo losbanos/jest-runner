@@ -1,31 +1,33 @@
-import { CallStarWars } from '@/components/sw/CallStarWars';
-import { getCurrentLanguage } from '@/components/sw/SWConnector';
-import { currentLanguage, DEFAULT_LOCALE } from '@/components/common/constants';
-import { TranslateModule, setTranslateBase } from '@/components/translate/TranslateModule';
-import TranslateBase from '@/components/translate/TranslateBase';
+// import { getCurrentLanguage } from '@/components/translate/TranslateService';
+// import { getCurrentNation } from '@/components/translate/TranslateModule';
+import { getMeetingWord } from '@/components/translate/TranslateService';
+import TranslateUnit from '@/components/translate/TranslateUnit';
 
-jest.mock('@/components/translate/TranslateService', () => () => ({
-    strings: {
-        polish: {
-            agree: 'tak',
-            disagree: 'nie'
-        },
-        malaysian: {
-            agree: 'ya',
-            disagree: 'tidak'
+jest.mock('@/components/translate/TranslateModule', () => {
+    return {
+        getTranslations: () => {
+            return {
+                strings: {
+                    korea: {
+                        greeting: '안녕',
+                        bye: '잘가'
+                    },
+                    malaysian: {
+                        greeting: 'ya',
+                        bye: 'tidak'
+                    }
+                }
+            };
         }
-    }
-}));
-jest.mock('@/components/translate/TranslateBase', () => {
+    };
+});
+
+jest.mock('@/components/translate/TranslateUnit', () => {
     return jest.fn().mockImplementation(() => {
         return {
-            name: 'Alle23',
-            getName() {
-                return this.name;
-            },
-            setName(name) {
-                this.name = name;
-            }
+            name: 'ABC',
+            getName: () => 'KTH',
+            setName: name => this.name = name
         };
     });
 });
@@ -33,33 +35,30 @@ jest.mock('@/components/translate/TranslateBase', () => {
 describe('LayoutMain 정상 마운트', () => {
     beforeEach(() => jest.resetModules());
     describe('mock 함수', () => {
-        it('mock implementation 테스트', () => {
-            jest.mock('@/components/common/constants', () => ({
-                DEFAULT_LOCALE: 'GE'
-            }));
-            const { getCategory } = require('@/components/sw/SWConnector');
-            expect(getCategory()).toBe('German');
-            // currentLanguage.mockImplementation(() => 'CN');
-            // return CallStarWars('r').then(data => console.log(data.results));
+        it('get Current Language', () => {
+            jest.mock('@/components/translate/TranslateModule',
+                () => ({ getCurrentNation: () => 'EN' }));
+            const { getCurrentLanguage } = require('@/components/translate/TranslateService');
+            expect(getCurrentLanguage()).toBe('English');
         });
-        it('mock value 테스트', () => {
-            jest.mock('@/components/common/constants', () => ({ DEFAULT_LOCALE: 'CN' }));
-            const { getCategory } = require('@/components/sw/SWConnector');
-            expect(getCategory()).toBe('China');
+        it('get Current Language', () => {
+            jest.mock('@/components/translate/TranslateModule',
+                () => ({ getCurrentNation: () => 'PH' }));
+            const { getCurrentLanguage } = require('@/components/translate/TranslateService')
+            expect(getCurrentLanguage()).toEqual('Philippin');
         });
     });
-    describe('Service Test', () => {
-        it.only('서비스 테스트', () => {
-            const r = TranslateModule('malaysian', false);
-            expect(r).toBe('They Say: tidak');
+    describe('Class Mock 챕터 1', () => {
+        it('말라시안 인사', () => {
+            expect(getMeetingWord('malaysian')).toEqual('They say ya');
         });
-        it.only('다른 언어 테스트', () => {
-            const r = TranslateModule('polish');
-            expect(r).toBe('They Say: tak');
+        it('한국 헤어짐 인사', () => {
+            expect(getMeetingWord('korea', false)).toEqual('They say 잘가');
         });
-        it.only('class mock test', () => {
-            const trans = setTranslateBase('');
-            expect(trans.getName()).toEqual('Allen123');
-        });
+        it('트랜스 유닛 클래스', () => {
+            const trans = new TranslateUnit();
+            expect(TranslateUnit.mock.calls.length).toEqual(1);
+            expect(trans.getName()).toBe('KTH');
+        })
     });
 });

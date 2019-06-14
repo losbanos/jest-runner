@@ -24,3 +24,12 @@ export const SW_CATEGORY = {
     VEHICLES: '/vehicles'
 };
 export const DEFAULT_LOCALE = 'EN';
+export const LANGUAGES = {
+    EN: 'English',
+    CN: 'China',
+    KR: 'Korean',
+    PH: 'Philippin',
+    GE: 'German',
+    US: 'America',
+    FR: 'France'
+};

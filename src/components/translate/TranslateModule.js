@@ -1,12 +1,22 @@
-import getTranslateService from './TranslateService';
-import TranslateBase from './TranslateBase';
-
-export const TranslateModule = (language, bool = true) => {
-    const trans = getTranslateService();
-    const getString = stringKey => trans['strings'][language][stringKey];
-    const res = bool ? getString('agree') : getString('disagree');
-    return `They Say: ${res}`;
+export const getCurrentNation = nation => nation || 'GE';
+export const setNation = nation => () => {
+    return nation.charAt(0).toUpperCase().concat(nation.slice(1));
 };
-export const setTranslateBase = name => {
-    return new TranslateBase(name);
+export const getTranslations = () => {
+    return {
+        strings: {
+            'british-english': {
+                greeting: 'Hello',
+                bye: 'Bye'
+            },
+            malaysian: {
+                greeting: 'Satu',
+                bye: 'Mari'
+            },
+            china: {
+                greeting: 'Ni hao',
+                bye: 'zai jian'
+            }
+        }
+    };
 };
