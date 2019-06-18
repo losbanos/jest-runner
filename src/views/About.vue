@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import { getFileName } from '@/components/sw/SWRequest';
+import { getFilmName } from '@/components/sw/SWRequest';
 
 export default {
     name: 'About',
@@ -14,11 +14,8 @@ export default {
         };
     },
     mounted() {
-        const data = getFileName('ab');
-        console.log(data);
-        // data.then(data => {
-        //     console.log(data);
-        // });
+        const data = getFilmName('ab');
+        data.then(res => console.log(res.data));
     }
 };
 </script>
