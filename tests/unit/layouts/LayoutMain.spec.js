@@ -1,5 +1,3 @@
-// import { getCurrentLanguage } from '@/components/translate/TranslateService';
-// import { getCurrentNation } from '@/components/translate/TranslateModule';
 import { getMeetingWord } from '@/components/translate/TranslateService';
 import TranslateUnit from '@/components/translate/TranslateUnit';
 

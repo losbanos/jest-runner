@@ -4,14 +4,14 @@ var currencyValidator = {
     },
     parse: function (newString, oldNumber) {
         var CleanParse = function (value) {
-            return { value: value }
+            return { value };
         }
         var CurrencyWarning = function (warning, value) {
             return {
-                warning: warning,
-                value: value,
+                warning,
+                value,
                 attempt: newString
-            }
+            };
         }
         var NotAValidDollarAmountWarning = function (value) {
             return new CurrencyWarning(newString + ' is not a valid dollar amount', value)
@@ -19,11 +19,10 @@ var currencyValidator = {
         var AutomaticConversionWarning = function (value) {
             return new CurrencyWarning(newString + ' was automatically converted to ' + value, value)
         }
-        
-        var newNumber = Number(newString)
-        var indexOfDot = newString.indexOf('.')
-        var indexOfE = newString.indexOf('e')
-        
+        var newNumber = Number(newString);
+        var indexOfDot = newString.indexOf('.');
+        var indexOfE = newString.indexOf('e');
+
         if (isNaN(newNumber)) {
             if (
                 indexOfDot === -1 &&
@@ -36,10 +35,10 @@ var currencyValidator = {
                 return new NotAValidDollarAmountWarning(oldNumber)
             }
         }
-        
+
         var newCurrencyString = currencyValidator.format(newNumber)
         var newCurrencyNumber = Number(newCurrencyString)
-        
+
         if (newCurrencyNumber === newNumber) {
             if (indexOfE !== -1 && indexOfE === newString.length - 2) {
                 return new AutomaticConversionWarning(newNumber)

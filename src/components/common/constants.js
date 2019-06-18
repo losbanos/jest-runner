@@ -8,8 +8,8 @@ export const EVENT_TYPES = {
 };
 
 export const BASE_URL = {
-    HACKERS_NEWS: '//hn.algolia.com/api/v1/search_by_date',
-    SW: 'https://swapi.co/api'
+    HACKERS_NEWS: '//hn.algolia.com/api/v1/search_by_date/',
+    SW: 'https://swapi.co/api/'
 };
 
 export const currentLanguage = function () {
