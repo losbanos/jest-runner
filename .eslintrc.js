@@ -16,6 +16,7 @@ module.exports = {
         'no-plusplus': [0, 'never'],
         'lines-between-class-members': [0],
         'func-names': ['error', 'never'],
+        'linebreak-style': ['error', 'unix']
     },
     parserOptions: {
         parser: 'babel-eslint',
