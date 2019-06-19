@@ -1,5 +1,6 @@
 import { getMeetingWord } from '@/components/translate/TranslateService';
 import TranslateUnit from '@/components/translate/TranslateUnit';
+import { getFilmName, getPokemonInfo } from '@/components/sw/SWRequest';
 
 jest.mock('@/components/translate/TranslateModule', () => ({
     getTranslations: () => ({
@@ -22,16 +23,18 @@ jest.mock('@/components/translate/TranslateUnit', () => jest.fn().mockImplementa
     setName: name => this.name = name
 })));
 
+jest.mock('@/components/sw/SWRequest');
+
 describe('LayoutMain 정상 마운트', () => {
     beforeEach(() => jest.resetModules());
     describe('mock 함수', () => {
-        it('get Current Language', () => {
+        it('get Current Language EN', () => {
             jest.mock('@/components/translate/TranslateModule',
                 () => ({ getCurrentNation: () => 'EN' }));
             const { getCurrentLanguage } = require('@/components/translate/TranslateService');
             expect(getCurrentLanguage()).toBe('English');
         });
-        it('get Current Language', () => {
+        it('get Current Language PH', () => {
             jest.mock('@/components/translate/TranslateModule',
                 () => ({ getCurrentNation: () => 'PH' }));
             const { getCurrentLanguage } = require('@/components/translate/TranslateService');
@@ -50,5 +53,13 @@ describe('LayoutMain 정상 마운트', () => {
             expect(TranslateUnit.mock.calls.length).toEqual(1);
             expect(trans.getName()).toBe('KTH');
         });
+    });
+});
+describe('비동기 샘플', () => {
+    it('SWRequest 메뉴얼 목 테스트', () => {
+        expect.assertions(1);
+       return getPokemonInfo('ab').then(res => {
+           expect(res.abilities.length).toEqual(2);
+       });
     });
 });

@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import { getFilmName } from '@/components/sw/SWRequest';
+    import {getFilmName, getPokemonInfo} from '@/components/sw/SWRequest';
 
 export default {
     name: 'About',
@@ -15,7 +15,10 @@ export default {
     },
     mounted() {
         const data = getFilmName('ab');
+        // data.then(res => res.json()).then(data => console.log(data));
         data.then(res => console.log(res.data));
+        const poke = getPokemonInfo('ditto');
+        poke.then(res => console.log('pokemon = ', res));
     }
 };
 </script>

@@ -9,7 +9,8 @@ export const EVENT_TYPES = {
 
 export const BASE_URL = {
     HACKERS_NEWS: '//hn.algolia.com/api/v1/search_by_date/',
-    SW: 'https://swapi.co/api/'
+    SW: 'https://swapi.co/api/',
+    POKE: 'https://pokeapi.co/api/v2/pokemon/'
 };
 
 export const currentLanguage = function () {
