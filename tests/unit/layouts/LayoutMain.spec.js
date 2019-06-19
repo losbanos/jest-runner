@@ -23,7 +23,7 @@ jest.mock('@/components/translate/TranslateUnit', () => jest.fn().mockImplementa
     setName: name => this.name = name
 })));
 
-jest.mock('@/components/sw/SWRequest');
+// jest.mock('@/components/sw/SWRequest');
 
 describe('LayoutMain 정상 마운트', () => {
     beforeEach(() => jest.resetModules());
@@ -57,9 +57,11 @@ describe('LayoutMain 정상 마운트', () => {
 });
 describe('비동기 샘플', () => {
     it('SWRequest 메뉴얼 목 테스트', () => {
-        expect.assertions(1);
-       return getPokemonInfo('ab').then(res => {
-           expect(res.abilities.length).toEqual(2);
-       });
+        expect.assertions(2);
+        return getPokemonInfo('ditto').then(res => {
+            const { data } = res;
+            expect(data.abilities.length).toEqual(2);
+            expect(data.weight).toEqual(40);
+        });
     });
 });
