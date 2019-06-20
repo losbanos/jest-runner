@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-    import {getFilmName, getPokemonInfo} from '@/components/sw/SWRequest';
+import { getFilmName, getPokemonInfo } from '@/components/sw/SWRequest';
 
 export default {
     name: 'About',
