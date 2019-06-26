@@ -18,6 +18,18 @@ export default {
         data.then(res => console.log(res.data));
         const poke = getPokemonInfo('ditto');
         poke.then(res => console.log('pokemon = ', res));
+
+        const all = document.querySelectorAll('*');
+        const iter = all[Symbol.iterator]();
+        console.log(iter.next());
+        console.log(iter.next());
+        console.log(iter.next());
+        console.log(iter.next());
+        console.log(iter.next());
+        console.log(iter[Symbol.iterator]());
+        for (const e of iter) {
+            // console.log(e);
+        }
     }
 };
 </script>
