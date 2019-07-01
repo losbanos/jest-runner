@@ -23,7 +23,7 @@ jest.mock('@/components/translate/TranslateUnit', () => jest.fn().mockImplementa
     setName: name => this.name = name
 })));
 
-// jest.mock('@/components/sw/SWRequest');
+jest.mock('@/components/sw/SWRequest');
 
 describe('LayoutMain 정상 마운트', () => {
     beforeEach(() => jest.resetModules());
