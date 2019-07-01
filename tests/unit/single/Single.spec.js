@@ -1,9 +1,10 @@
-// import Main from '@/single/main';
+import { App } from '@/single/main';
 
-describe('Single Jest', () => {
-    describe('Hello World', () => {
-        it('초기화', () => {
-            expect(true).toBe(true);
+describe('App 클릭 카운터 모듈 Jest', () => {
+    describe('getValue', () => {
+        it.only('초기값이 0인 카운터 값을 반환한다', () => {
+            const counter = App.ClickCounter();
+            expect(counter.getValue()).toBe(0);
         });
     });
 });
