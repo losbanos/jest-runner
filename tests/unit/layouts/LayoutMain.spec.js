@@ -57,11 +57,7 @@ describe('LayoutMain 정상 마운트', () => {
 });
 describe('비동기 샘플', () => {
     it('SWRequest 메뉴얼 목 테스트', () => {
-        expect.assertions(2);
-        return getPokemonInfo('ditto').then(res => {
-            const { data } = res;
-            expect(data.abilities.length).toEqual(2);
-            expect(data.weight).toEqual(40);
-        });
+        expect.assertions(1);
+        return getPokemonInfo('ditto').then(res => expect(res.base_experience).toEqual(101));
     });
 });
