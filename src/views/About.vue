@@ -23,14 +23,14 @@ export default {
 
         const all = document.querySelectorAll('*');
         const iter = all[Symbol.iterator]();
-        console.log(iter.next());
-        console.log(iter.next());
-        console.log(iter.next());
-        console.log(iter.next());
-        console.log(iter.next());
-        console.log(iter[Symbol.iterator]());
+        log(iter.next());
+        log(iter.next());
+        log(iter.next());
+        log(iter.next());
+        log(iter.next());
+        log(iter[Symbol.iterator]());
         for (const e of iter) {
-            // console.log(e);
+            console.log(e);
         }
     }
 };
