@@ -6,9 +6,11 @@ App.ClickCounter = () => {
     return {
         getValue() {
             return value;
+        },
+        increase() {
+            value++;
         }
     };
 };
-module.exports = {
-    App
-};
+
+export default App;
