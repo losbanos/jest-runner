@@ -1,16 +1,5 @@
-const { log } = console;
+import ClickCountModel from './ClickCountModel';
+import ClickCountView from './view/ClickCountView';
 
-const App = {};
-App.ClickCounter = () => {
-    let value = 0;
-    return {
-        getValue() {
-            return value;
-        },
-        increase() {
-            value++;
-        }
-    };
-};
-
-export default App;
+ClickCountModel.ClickCounter();
+ClickCountView.ClickCountView();

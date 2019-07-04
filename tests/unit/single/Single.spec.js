@@ -1,9 +1,9 @@
-import App from '@/single/main';
+import ClickCountModel from '@/single/ClickCountModel';
 
 describe('App 클릭 카운터 모듈 Jest', () => {
     let counter = '';
     beforeEach(() => {
-        counter = App.ClickCounter();
+        counter = ClickCountModel.ClickCounter();
     });
     describe('getValue', () => {
         it('초기값이 0인 카운터 값을 반환한다', () => {
