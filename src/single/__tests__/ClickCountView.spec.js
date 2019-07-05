@@ -13,6 +13,8 @@ describe('ClickCountView', () => {
     it('clickCounter 를 주입하지 않으면 에러를 던진다', () => {
         const clickCounter = null;
         const updateEl = document.createElement('span');
+        const actual = () => ClickCountView.ClickCountView(clickCounter, updateEl);
+        expect(actual).toThrowError(/Null/);
     });
     it('updateEl 을 주입하지않으면 에러를 던진다', () => {
 
