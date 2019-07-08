@@ -27,4 +27,16 @@ describe('ClickCountView', () => {
             expect(updateEl.innerHTML).toBe(v.toString());
         });
     });
+    describe('increaseAndUpdateView 는', () => {
+        it('카운트 값을 증가한다', () => {
+            const s = jest.spyOn(clickCounter, 'increase');
+            view.increaseAndUpdateView();
+            expect(s).toHaveBeenCalled();
+        });
+        it('증가된 카운트 값을 화면에 출력한다', () => {
+            const v = jest.spyOn(view, 'updateView');
+            view.increaseAndUpdateView();
+            expect(v).toHaveBeenCalled();
+        });
+    });
 });

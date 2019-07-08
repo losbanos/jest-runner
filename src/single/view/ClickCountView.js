@@ -9,6 +9,10 @@ App.initView = (clickCounter, updateEl) => {
     return {
         updateView() {
             updateEl.innerHTML = clickCounter.getValue();
+        },
+        increaseAndUpdateView() {
+            clickCounter.increase();
+            this.updateView();
         }
     };
 };
