@@ -5,20 +5,26 @@ describe('ClickCountView', () => {
     let clickCounter;
     let updateEl;
     let view;
+    let triggerEl;
     beforeEach(() => {
         clickCounter = ClickCountModel.ClickCounter();
         updateEl = document.createElement('span');
-        view = ClickCountView.initView(clickCounter, updateEl);
+        triggerEl = document.createElement('button');
+        view = ClickCountView.initView(clickCounter, { updateEl, triggerEl });
     });
-    it('clickCounter 를 주입하지 않으면 에러를 던진다', () => {
-        const clickCounter = null;
-        const updateEl = document.createElement('span');
-        const actual = () => ClickCountView.initView(clickCounter, updateEl);
-        expect(actual).toThrow(/Null/);
-    });
-    it('updateEl 을 주입하지않으면 에러를 던진다', () => {
-        const virtual = () => ClickCountView.initView(ClickCountModel.ClickCounter(), null);
-        expect(virtual).toThrow(/Null/);
+    describe('디폴트 값 테스트', () => {
+        it('clickCounter 를 주입하지 않으면 에러를 던진다', () => {
+            const clickCounter = null;
+            const updateEl = document.createElement('span');
+            const actual = () => ClickCountView.initView(clickCounter, { updateEl });
+            expect(actual).toThrow(/Null/);
+        });
+        it('updateEl 을 주입하지않으면 에러를 던진다', () => {
+            const virtual = () => ClickCountView.initView(
+                ClickCountModel.ClickCounter(), { updateEl: null }
+            );
+            expect(virtual).toThrow(/Null/);
+        });
     });
     describe('Update View', () => {
         it('Click Counter의 getValue() 값을 출력한다', () => {
@@ -37,6 +43,11 @@ describe('ClickCountView', () => {
             const v = jest.spyOn(view, 'updateView');
             view.increaseAndUpdateView();
             expect(v).toHaveBeenCalled();
+        });
+        it('클릭 이벤트가 발생하면 increaseAndUpdateView를 실행한다', () => {
+            const act = jest.spyOn(view, 'increaseAndUpdateView');
+            triggerEl.click();
+            expect(act).toHaveBeenCalled();
         });
     });
 });

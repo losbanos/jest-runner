@@ -1,12 +1,12 @@
 const App = {};
-App.initView = (clickCounter, updateEl) => {
+App.initView = (clickCounter, {updateEl, triggerEl}) => {
     if (!clickCounter) {
         throw Error('isNull');
     }
     if (!updateEl) {
         throw Error('update Element is Null');
     }
-    return {
+    const view = {
         updateView() {
             updateEl.innerHTML = clickCounter.getValue();
         },
@@ -15,5 +15,9 @@ App.initView = (clickCounter, updateEl) => {
             this.updateView();
         }
     };
+    triggerEl.addEventListener('click', () => {
+        view.increaseAndUpdateView();
+    });
+    return view;
 };
 export default App;
