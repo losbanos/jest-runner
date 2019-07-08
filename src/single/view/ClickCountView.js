@@ -1,11 +1,18 @@
 const App = {};
-App.ClickCountView = (clickCounter, updateEl) => {
+App.initView = (clickCounter, updateEl) => {
     if (!clickCounter) {
-        throw new Error('ClickCount is Null');
+        throw Error('isNull');
+    }
+    if (!updateEl) {
+        throw Error('update Element is Null');
     }
     return {
         updateView() {
             updateEl.innerHTML = clickCounter.getValue();
+        },
+        increaseAndUpdateView() {
+            clickCounter.increase();
+            this.updateView();
         }
     };
 };

@@ -1,20 +1,20 @@
-import ClickCountModel from '../ClickCountModel';
+import ClickCountModel from '@/single/ClickCountModel';
 
-describe('ClickCount Model', () => {
-    let clickCounter;
+describe('App 클릭 카운터 모듈 Jest', () => {
+    let counter = '';
     beforeEach(() => {
-        clickCounter = ClickCountModel.ClickCounter();
+        counter = ClickCountModel.ClickCounter();
     });
-    describe('getValue ', () => {
-        it('초기값이 0인 카운터를 반환한다', () => {
-            expect(clickCounter.getValue()).toBe(0);
+    describe('getValue', () => {
+        it('초기값이 0인 카운터 값을 반환한다', () => {
+            expect(counter.getValue()).toBe(0);
         });
     });
-    describe('increase ', () => {
+    describe('increase()', () => {
         it('카운터를 1 올린다', () => {
-            const v = clickCounter.getValue();
-            clickCounter.increase();
-            expect(clickCounter.getValue()).toBe(v + 1);
-        })
-    })
-})
+            const v = counter.getValue();
+            counter.increase();
+            expect(counter.getValue()).toBe(v + 1);
+        });
+    });
+});
