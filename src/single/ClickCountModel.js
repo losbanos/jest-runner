@@ -9,7 +9,16 @@ const ClickCountModel = {
                 return value;
             },
             increase() {
+                this.count();
+            },
+            count() {
                 value++;
+            },
+            setCountFn(fn) {
+                this.count = () => {
+                    value = fn(value);
+                };
+                return this;
             }
         };
     }

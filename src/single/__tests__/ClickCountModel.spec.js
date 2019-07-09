@@ -22,4 +22,12 @@ describe('App 클릭 카운터 모듈 Jest', () => {
             expect(counter.getValue()).toBe(v + 1);
         });
     });
+    describe('set Count Function', () => {
+        it('인자로 함수를 넘기면 count 함수를 대체한다.', () => {
+            const add2 = v => v + 2;
+            const expected = add2(data.value);
+            counter.setCountFn(add2).count();
+            expect(counter.getValue()).toBe(expected);
+        });
+    });
 });
