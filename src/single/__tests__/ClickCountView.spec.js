@@ -6,8 +6,9 @@ describe('ClickCountView', () => {
     let updateEl;
     let view;
     let triggerEl;
+    const data = { value: 0};
     beforeEach(() => {
-        clickCounter = ClickCountModel.ClickCounter();
+        clickCounter = ClickCountModel.ClickCounter(data);
         updateEl = document.createElement('span');
         triggerEl = document.createElement('button');
         view = ClickCountView.initView(clickCounter, { updateEl, triggerEl });
@@ -21,7 +22,7 @@ describe('ClickCountView', () => {
         });
         it('updateEl 을 주입하지않으면 에러를 던진다', () => {
             const virtual = () => ClickCountView.initView(
-                ClickCountModel.ClickCounter(), { updateEl: null }
+                ClickCountModel.ClickCounter(data), { updateEl: null }
             );
             expect(virtual).toThrow(/Null/);
         });

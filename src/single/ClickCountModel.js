@@ -1,6 +1,9 @@
 const ClickCountModel = {
-    ClickCounter() {
-        let value = 0;
+    ClickCounter(data) {
+        if (!data) {
+            throw Error('Model Count Data is Null');
+        }
+        let { value = 0 } = data;
         return {
             getValue() {
                 return value;
