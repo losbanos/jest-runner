@@ -18,7 +18,7 @@ describe('App 클릭 카운터 모듈 Jest', () => {
     describe('increase()', () => {
         it('카운터를 1 올린다', () => {
             const v = counter.getValue();
-            counter.increase();
+            counter.count();
             expect(counter.getValue()).toBe(v + 1);
         });
     });

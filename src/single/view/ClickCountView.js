@@ -1,5 +1,5 @@
 const App = {};
-App.initView = (clickCounter, {updateEl, triggerEl}) => {
+App.initView = (clickCounter, { updateEl, triggerEl }) => {
     if (!clickCounter) {
         throw Error('isNull');
     }
@@ -11,7 +11,7 @@ App.initView = (clickCounter, {updateEl, triggerEl}) => {
             updateEl.innerHTML = clickCounter.getValue();
         },
         increaseAndUpdateView() {
-            clickCounter.increase();
+            clickCounter.count();
             this.updateView();
         }
     };

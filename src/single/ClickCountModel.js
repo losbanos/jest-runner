@@ -1,3 +1,5 @@
+import CounterModel from './common/CounterModel';
+
 const ClickCountModel = {
     ClickCounter(data) {
         if (!data) {
@@ -7,9 +9,6 @@ const ClickCountModel = {
         return {
             getValue() {
                 return value;
-            },
-            increase() {
-                this.count();
             },
             count() {
                 value++;
