@@ -1,5 +1,4 @@
-const App = {};
-App.initView = (clickCounter, { updateEl, triggerEl }) => {
+export default function (clickCounter, { updateEl, triggerEl }) {
     if (!clickCounter) {
         throw Error('isNull');
     }
@@ -19,5 +18,4 @@ App.initView = (clickCounter, { updateEl, triggerEl }) => {
         view.increaseAndUpdateView();
     });
     return view;
-};
-export default App;
+}

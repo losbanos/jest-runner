@@ -1,14 +1,17 @@
-import ClickCountModel from '@/single/ClickCountModel';
+import ClickCounter from '@/single/ClickCountModel';
+import App from '../common/App';
 
 describe('App 클릭 카운터 모듈 Jest', () => {
     let counter = '';
     const data = { value: 0 };
+    App.ClickCounter = ClickCounter;
+
     it('초기값을 주입하지 않으면 에러 발생', () => {
-        const actual = () => ClickCountModel.ClickCounter(null);
+        const actual = () => App.ClickCounter(null);
         expect(actual).toThrow();
     });
     beforeEach(() => {
-        counter = ClickCountModel.ClickCounter(data);
+        counter = App.ClickCounter(data);
     });
     describe('getValue', () => {
         it('초기값이 0인 카운터 값을 반환한다', () => {

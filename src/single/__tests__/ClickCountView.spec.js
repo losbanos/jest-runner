@@ -1,28 +1,31 @@
 import ClickCountView from '../view/ClickCountView';
-import ClickCountModel from '../ClickCountModel';
+import ClickCounter from '../ClickCountModel';
+import App from '../common/App';
 
 describe('ClickCountView', () => {
     let clickCounter;
     let updateEl;
     let view;
     let triggerEl;
-    const data = { value: 0};
+    const data = { value: 0 };
+    App.ClickCountView = ClickCountView;
+    App.ClickCounter = ClickCounter;
     beforeEach(() => {
-        clickCounter = ClickCountModel.ClickCounter(data);
+        clickCounter = App.ClickCounter(data);
         updateEl = document.createElement('span');
         triggerEl = document.createElement('button');
-        view = ClickCountView.initView(clickCounter, { updateEl, triggerEl });
+        view = App.ClickCountView(clickCounter, { updateEl, triggerEl });
     });
     describe('디폴트 값 테스트', () => {
         it('clickCounter 를 주입하지 않으면 에러를 던진다', () => {
             const clickCounter = null;
             const updateEl = document.createElement('span');
-            const actual = () => ClickCountView.initView(clickCounter, { updateEl });
+            const actual = () => App.ClickCountView(clickCounter, { updateEl });
             expect(actual).toThrow(/Null/);
         });
         it('updateEl 을 주입하지않으면 에러를 던진다', () => {
-            const virtual = () => ClickCountView.initView(
-                ClickCountModel.ClickCounter(data), { updateEl: null }
+            const virtual = () => App.ClickCountView(
+                App.ClickCounter(data), { updateEl: null }
             );
             expect(virtual).toThrow(/Null/);
         });
@@ -36,7 +39,7 @@ describe('ClickCountView', () => {
     });
     describe('increaseAndUpdateView 는', () => {
         it('카운트 값을 증가한다', () => {
-            const s = jest.spyOn(clickCounter, 'increase');
+            const s = jest.spyOn(clickCounter, 'count');
             view.increaseAndUpdateView();
             expect(s).toHaveBeenCalled();
         });

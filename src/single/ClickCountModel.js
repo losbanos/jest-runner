@@ -1,25 +1,22 @@
-import CounterModel from './common/CounterModel';
-
-const ClickCountModel = {
-    ClickCounter(data) {
-        if (!data) {
-            throw Error('Model Count Data is Null');
-        }
-        let { value = 0 } = data;
-        return {
-            getValue() {
-                return value;
-            },
-            count() {
-                value++;
-            },
-            setCountFn(fn) {
-                this.count = () => {
-                    value = fn(value);
-                };
-                return this;
-            }
-        };
+export default function (params) {
+    if (!params) {
+        throw Error('Model Count Data is Null');
     }
-};
-export default ClickCountModel;
+    this.data = params || {};
+    this.data.value = this.data.value || 0;
+    const owner = this;
+    return {
+        getValue() {
+            return owner.data.value;
+        },
+        count() {
+            owner.data.value++;
+        },
+        setCountFn(fn) {
+            this.count = () => {
+                owner.data.value = fn(owner.data.value);
+            };
+            return this;
+        }
+    };
+}
