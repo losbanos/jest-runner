@@ -16,6 +16,11 @@ module.exports = {
             template: 'public/single.html',
             filename: 'single/index.html',
             chunks: ['chunk-vendors', 'chunk-common', 'single']
+        },
+        fp: {
+            entry: 'src/components/fp/fp.js',
+            template: 'public/fp.html',
+            filename: 'fp/index.html'
         }
     },
     devServer: {
@@ -23,6 +28,7 @@ module.exports = {
         historyApiFallback: {
             rewrites: [
                 { from: /^\/single\/?.*/, to: path.posix.join('/', 'single/index.html') },
+                { from: /^\/fp\/?.*/, to: path.posix.join('/', 'fp/index.html') },
                 { from: /./, to: path.posix.join('/', 'index.html') }
             ]
         }

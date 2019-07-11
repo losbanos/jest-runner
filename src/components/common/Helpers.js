@@ -1,43 +1,49 @@
-// export const draft = () => 'draft';
-// export const getLength = function (list) {
-//     return list === null ? undefined : list.length;
-// };
-const { log } = console;
-log('----------- ARR --------------');
+const { log, dir } = console;
+log('-------------FOR----------');
 const arr = [1, 2, 3];
-const itr = arr[Symbol.iterator]();
-for (const i of itr) {
+let itrArr = arr[Symbol.iterator]();
+itrArr.next();
+itrArr.next();
+itrArr.next();
+for (const i of itrArr) {
     log(i);
 }
-log('----------- SET --------------');
-const set = new Set([1, 2, 3]);
-const itr2 = set[Symbol.iterator]();
-log(itr2.next());
-for (const a of itr2) {
-    log(a);
-}
-log('----------- MAP --------------');
-const map = new Map([['a', 1], ['b', 2], ['c', 3]]);
-const itr3 = map.entries();
-const itr4 = itr3[Symbol.iterator]();
 
-// for (const b of map.keys()) {
-//     log(b);
-// }
-// for (const b of map.values()) {
-//     log(b);
-// }
-// for (const b of map.entries()) {
-//     log(b);
-// }
-log('-----------CUSTOM -------------');
-const iterable = {
+log('-------------SET----------');
+const set1 = new Set([1, 2, 3]);
+const iterSet = set1[Symbol.iterator]();
+iterSet.next();
+iterSet.next();
+for (const s of iterSet) {
+    log(s);
+}
+log('-------------MAP----------');
+const map1 = new Map([['a', 1], ['b', 2], ['c', 3]]);
+
+const iterMap = map1[Symbol.iterator]();
+const valuesMap = map1.values();
+// for (const m of valuesMap){ log (m);}
+const valuesMap2 = valuesMap[Symbol.iterator]();
+// log(valuesMap[Symbol.iterator]);
+
+log(valuesMap2);
+log(valuesMap.next());
+// log(valuesMap2.next());
+// log(valuesMap2.next());
+
+// for (const m of map1) { log(m); };
+// for (const m of map1.values()) { log(m); };
+// for (const m of map1.entries()) { log(m); };
+
+log('-------------CUSTOM----------');
+const iterableCustom = {
     [Symbol.iterator]() {
         let i = 3;
         return {
             next() {
-                return i === 0 ? { done: true } : {
-                    value: i--, done: false
+                return i === 0 ? { value: undefined, done: true } : {
+                    value: i--,
+                    done: false
                 };
             },
             [Symbol.iterator]() {
@@ -46,10 +52,6 @@ const iterable = {
         };
     }
 };
-const iterator = iterable[Symbol.iterator]();
-const iter2 = iterator[Symbol.iterator]();
-iter2.next();
-for (const c of iter2) {
-    log(c);
-}
-
+const iteratorCustom = iterableCustom[Symbol.iterator]();
+iteratorCustom.next();
+for (const c of iteratorCustom) log(c);
