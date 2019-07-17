@@ -27,3 +27,27 @@ log(iterGen.next());
 for (const c of gener()) {
     log(c);
 }
+log('------------------Infinity-------------');
+function* infinity(i = 0) {
+    while (true) yield i++;
+}
+const infInter = infinity(1);
+log(infInter.next());
+log('------------------Limit-------------');
+function* limiter(limit, iter) {
+    for (const l of iter) {
+        yield l;
+        if (l === limit) return;
+    }
+}
+
+log('------------------ODD-------------');
+function* odds(limit) {
+    for (const d of limiter(limit, infinity(1))) {
+        if (d % 2) yield d;
+        if (d === limit) return;
+    }
+}
+for (const n of odds(20)) {
+    log(n);
+}
