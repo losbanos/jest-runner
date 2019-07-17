@@ -48,6 +48,11 @@ function* odds(limit) {
         if (d === limit) return;
     }
 }
-for (const n of odds(20)) {
-    log(n);
-}
+// log([...odds(20), ...odds(10)]);
+const [head, middle, ...tail] = odds(15);
+log(head);
+log(middle);
+log(tail);
+// for (const n of odds(20)) {
+//     log(n);
+// }
