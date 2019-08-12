@@ -17,8 +17,8 @@ module.exports = {
             filename: 'single/index.html',
             chunks: ['chunk-vendors', 'chunk-common', 'single']
         },
-        fp: {
-            entry: 'src/components/fp/fp.js',
+        fpx: {
+            entry: 'src/components/fp/fx.js',
             template: 'public/fp.html',
             filename: 'fp/index.html'
         }
