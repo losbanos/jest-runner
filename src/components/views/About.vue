@@ -29,9 +29,9 @@ export default {
         log(iter.next());
         log(iter.next());
         log(iter[Symbol.iterator]());
-        for (const e of iter) {
-            console.log(e);
-        }
+        // for (const e of iter) {
+        // console.log(e);
+        // }
     }
 };
 </script>

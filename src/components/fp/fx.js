@@ -2,25 +2,19 @@ import { go, map2, filter2, reduce2, pipe, curry } from './fp';
 import { products } from '@/components/common/constants';
 
 const { log } = console;
-go(
-    products,
-    map2(p => p.quantity),
-    reduce2((a, b) => a + b),
-    log
-);
 const add = (a, b) => a + b;
-const sum = curry((f, iterator) => go(
-    iterator,
-    map2(f),
-    reduce2(add))
-);
-const totalQuantity = sum(p => p.quantity);
-const totalPrice = sum(p => p.quantity * p.price);
 
-log('total Quantity =', totalQuantity(products));
-log('total Price = ', totalPrice(products));
-log(sum(u => u.age, [
-    { age: 30 },
-    { age: 20 },
-    { age: 540 }
+const sum = curry((f, iter) => go(
+    iter,
+    map2(f),
+    reduce2(add)
+));
+const totalPrice = sum(p => p.price * p.quantity);
+console.log('totalPrice = ', totalPrice(products));
+
+const getAge = sum(u => u.age);
+log(getAge([
+    { age: 100 },
+    { age: 120 },
+    { age: 310 }
 ]));

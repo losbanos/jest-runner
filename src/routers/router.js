@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import LayoutMain from './components/layouts/LayoutMain';
+import LayoutMain from '@/components/layouts/LayoutMain';
 
 Vue.use(Router);
 
@@ -18,11 +18,11 @@ export default new Router({
             // route level code-splitting
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
-            component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+            component: () => import(/* webpackChunkName: "about" */'@/components/views/About.vue')
         }, {
             path: '/currency',
             name: 'currency',
-            component: () => import('./components/currency/Currency.vue')
+            component: () => import('@/components/currency/Currency.vue')
         }
     ]
 });
