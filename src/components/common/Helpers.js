@@ -185,7 +185,7 @@ const reduce = (f, acc, iterable) => {
     } else {
         iterator = iterable;
     }
-    for(const n of iterator) {
+    for (const n of iterator) {
         acc = f(acc, n);
     }
     return acc;

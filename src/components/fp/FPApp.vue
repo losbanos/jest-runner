@@ -12,36 +12,50 @@
                     <th scope="col">상품명</th>
                     <th scope="col">가격</th>
                     <th scope="col">수량</th>
-                    <th scope="col">합계</th>
+                    <th scope="col">총가격</th>
                 </tr>
             </thead>
-            <tbody>
-                <product></product>
+            <product>
                 <tr>
-                    <td>총합</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td slot="singlePrice"></td>
+                    <td slot="totalQuantity"></td>
+                    <td slot="totalPrice"></td>
                 </tr>
-            </tbody>
+            </product>
         </table>
     </div>
 </template>
 
 <script>
 import { products } from '../common/constants';
+import { map2, curry, reduce2, go } from '@/components/common/Helpers';
 
+const { log } = console;
 const Product = {
     name: 'Product',
-    functional: true,
+    // functional: true,
     render(h) {
         const trees = [];
+        // const sum = curry((f, iter) => go(
+        //     iter,
+        //     map2(f),
+        //     reduce2((a, b) => a + b)
+        // ));
+        // const totalPrice = sum(p => p.price * p.quantity);
+        // const singlePrice = sum(p => p.price);
+        // const totalQuantity = sum(p => p.quantity);
         for (const prod of products) {
             const tds = [];
             Object.keys(prod).forEach(prop => tds.push(h('td', prod[prop])));
             trees.push(h('tr', [tds]));
         }
-        return trees;
+        const sums = [];
+        console.log(this.$slots.default[0].children);
+        for (const child of this.$slots.default) {
+            log(child.children);
+        }
+        trees.push(h('tr', sums));
+        return h('tbody', trees);
     }
 };
 export default {
@@ -53,6 +67,16 @@ export default {
         return {
             fp: 'app'
         };
+    },
+    mounted() {
+        const sum = curry((f, iter) => go(
+            iter,
+            map2(f),
+            reduce2((a, b) => a + b)
+        ));
+        const totalPrice = sum(p => p.price * p.quantity);
+        const singlePrice = sum(p => p.price);
+        const totalQuantity = sum(p => p.quantity);
     }
 };
 </script>

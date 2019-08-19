@@ -12,9 +12,3 @@ const sum = curry((f, iter) => go(
 const totalPrice = sum(p => p.price * p.quantity);
 console.log('totalPrice = ', totalPrice(products));
 
-const getAge = sum(u => u.age);
-log(getAge([
-    { age: 100 },
-    { age: 120 },
-    { age: 310 }
-]));
