@@ -2,13 +2,15 @@
     <div id="cart">
         <table class="tbl-cart">
             <colgroup>
-                <col style="width: 30%;">
+                <col style="width: 10%;">
+                <col style="width: 20%;">
                 <col style="width: 20%;">
                 <col style="width: 20%;">
                 <col style="width: 20%;">
             </colgroup>
             <thead>
                 <tr>
+                    <th scope="col">선택</th>
                     <th scope="col">상품명</th>
                     <th scope="col">가격</th>
                     <th scope="col">수량</th>
@@ -18,7 +20,7 @@
             <tbody>
                 <product-list></product-list>
                 <tr>
-                    <td> 합계 </td>
+                    <td colspan="2"> 합계 </td>
                     <td> {{singlePrice}} </td>
                     <td> {{totalQuantity}} </td>
                     <td> {{totalPrice}} </td>
@@ -49,6 +51,9 @@ const ProductList = {
                         }),
                         h('input', { attrs: { value, id: prop.charCodeAt(0), type: 'number' } })];
                     }
+                    if (prop === 'is_selected') {
+                        child = [h('input', { attrs: { checked: value, type: 'checkbox' }})];
+                    }
                     tds.push(h('td', child));
                 }
                 tds.push(h('td', prod.price * prod.quantity));
@@ -76,9 +81,9 @@ export default {
             map2(f),
             reduce2((a, b) => a + b)
         ));
-        this.totalPrice = sum(p => p.price * p.quantity, products);
-        this.singlePrice = sum(p => p.price, products);
-        this.totalQuantity = sum(p => p.quantity, products);
+        this.totalPrice = sum(p => p.is_selected && (p.price * p.quantity), products);
+        this.singlePrice = sum(p => p.is_selected && p.price, products);
+        this.totalQuantity = sum(p => p.is_selected && p.quantity, products);
     }
 };
 </script>

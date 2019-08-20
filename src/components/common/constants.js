@@ -36,9 +36,9 @@ export const LANGUAGES = {
 };
 
 export const products = [
-    { name: '반팔티', price: 15000, quantity: 1 },
-    { name: '긴팔티', price: 24000, quantity: 2 },
-    { name: 'T셔츠', price: 30000, quantity: 3 },
-    { name: '반바지', price: 17000, quantity: 4 },
-    { name: '핸드폰케이스', price: 25000, quantity: 5 }
+    {is_selected: true, name: '반팔티', price: 15000, quantity: 1},
+    {is_selected: false, name: '긴팔티', price: 24000, quantity: 2 },
+    {is_selected: false, name: 'T셔츠', price: 30000, quantity: 3 },
+    {is_selected: true, name: '반바지', price: 17000, quantity: 4, },
+    {is_selected: false, name: '핸드폰케이스', price: 25000, quantity: 5}
 ];
