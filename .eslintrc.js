@@ -18,7 +18,10 @@ module.exports = {
         'lines-between-class-members': [0],
         'func-names': ['error', 'never'],
         'linebreak-style': ['error', 'unix'],
-        'no-restricted-syntax': ['off', 'ForOfStatement']
+        'no-restricted-syntax': ['off', 'ForOfStatement'],
+        'object-curly-newline': ['off', 'never'],
+        'object-curly-spacing': ['error', 'never'],
+        'arrow-parens': ['error', 'as-needed']
     },
     parserOptions: {
         parser: 'babel-eslint',

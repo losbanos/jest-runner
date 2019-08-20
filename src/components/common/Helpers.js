@@ -248,7 +248,7 @@ const reduce2 = curry((f, acc, iterable) => {
     } else {
         iterator = iterable;
     }
-    for(const n of iterator) {
+    for (const n of iterator) {
         acc = f(acc, n);
     }
     return acc;
@@ -279,6 +279,34 @@ go(
     filter2(p => p.price < 20000),
     totalSize
 );
+const range = size => {
+    let i = -1;
+    const result = [];
+    while (++i < size) {
+        log(i, 'range');
+        result.push(i);
+    }
+    return result;
+};
+log(reduce(add, range(4)));
+// log(range(4));
+
+const L = {};
+L.range = function* (size) {
+    let i = -1;
+    log('hi');
+    while (++i < size) {
+        log(i, 'L. range');
+        yield i;
+    }
+};
+const list = L.range(4);
+log(list);
+log(list.next().value);
+log(list.next().value);
+log(list.next().value);
+log(list.next().value);
+// log(reduce(add, list));
 export {
     filter2,
     map2,

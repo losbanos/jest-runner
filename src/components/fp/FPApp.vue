@@ -31,28 +31,33 @@
 </template>
 
 <script>
-import { products } from '../common/constants';
-import { map2, curry, reduce2, go } from '@/components/common/Helpers';
+import {products} from '../common/constants';
+import {
+    map2,
+    curry,
+    reduce2,
+    go
+} from '@/components/common/Helpers';
 
-const { log } = console;
+// const { log } = console;
 const ProductList = {
     name: 'Products',
     functional: true,
     render(h) {
         return go(
             products,
-            map2(prod => {
+            map2((prod) => {
                 const tds = [];
                 for (const [prop, value] of Object.entries(prod)) {
                     let child = value;
                     if (prop === 'quantity') {
                         child = [h('label', {
-                            attrs: { for: prop.charCodeAt(0) }
+                            attrs: {for: prop.charCodeAt(0)}
                         }),
-                        h('input', { attrs: { value, id: prop.charCodeAt(0), type: 'number' } })];
+                        h('input', {attrs: {value, id: prop.charCodeAt(0), type: 'number'}})];
                     }
                     if (prop === 'is_selected') {
-                        child = [h('input', { attrs: { checked: value, type: 'checkbox' }})];
+                        child = [h('input', {attrs: {checked: value, type: 'checkbox'}})];
                     }
                     tds.push(h('td', child));
                 }
