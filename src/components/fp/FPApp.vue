@@ -4,8 +4,8 @@
             <colgroup>
                 <col style="width: 30%;">
                 <col style="width: 20%;">
-                <col style="width: 10%;">
-                <col style="width: 40%;">
+                <col style="width: 20%;">
+                <col style="width: 20%;">
             </colgroup>
             <thead>
                 <tr>
@@ -15,13 +15,15 @@
                     <th scope="col">총가격</th>
                 </tr>
             </thead>
-            <product>
+            <tbody>
+                <product-list></product-list>
                 <tr>
-                    <td slot="singlePrice"></td>
-                    <td slot="totalQuantity"></td>
-                    <td slot="totalPrice"></td>
+                    <td> 합계 </td>
+                    <td> {{singlePrice}} </td>
+                    <td> {{totalQuantity}} </td>
+                    <td> {{totalPrice}} </td>
                 </tr>
-            </product>
+            </tbody>
         </table>
     </div>
 </template>
@@ -31,41 +33,41 @@ import { products } from '../common/constants';
 import { map2, curry, reduce2, go } from '@/components/common/Helpers';
 
 const { log } = console;
-const Product = {
-    name: 'Product',
-    // functional: true,
+const ProductList = {
+    name: 'Products',
+    functional: true,
     render(h) {
-        const trees = [];
-        // const sum = curry((f, iter) => go(
-        //     iter,
-        //     map2(f),
-        //     reduce2((a, b) => a + b)
-        // ));
-        // const totalPrice = sum(p => p.price * p.quantity);
-        // const singlePrice = sum(p => p.price);
-        // const totalQuantity = sum(p => p.quantity);
-        for (const prod of products) {
-            const tds = [];
-            Object.keys(prod).forEach(prop => tds.push(h('td', prod[prop])));
-            trees.push(h('tr', [tds]));
-        }
-        const sums = [];
-        console.log(this.$slots.default[0].children);
-        for (const child of this.$slots.default) {
-            log(child.children);
-        }
-        trees.push(h('tr', sums));
-        return h('tbody', trees);
+        return go(
+            products,
+            map2(prod => {
+                const tds = [];
+                for (const [prop, value] of Object.entries(prod)) {
+                    let child = value;
+                    if (prop === 'quantity') {
+                        child = [h('label', {
+                            attrs: { for: prop.charCodeAt(0) }
+                        }),
+                        h('input', { attrs: { value, id: prop.charCodeAt(0), type: 'number' } })];
+                    }
+                    tds.push(h('td', child));
+                }
+                tds.push(h('td', prod.price * prod.quantity));
+                return h('tr', tds);
+            })
+        );
     }
 };
 export default {
     name: 'FPApp',
     components: {
-        Product
+        ProductList
     },
-    date() {
+    data() {
         return {
-            fp: 'app'
+            fp: 'app',
+            totalPrice: 0,
+            singlePrice: 0,
+            totalQuantity: 0
         };
     },
     mounted() {
@@ -74,9 +76,9 @@ export default {
             map2(f),
             reduce2((a, b) => a + b)
         ));
-        const totalPrice = sum(p => p.price * p.quantity);
-        const singlePrice = sum(p => p.price);
-        const totalQuantity = sum(p => p.quantity);
+        this.totalPrice = sum(p => p.price * p.quantity, products);
+        this.singlePrice = sum(p => p.price, products);
+        this.totalQuantity = sum(p => p.quantity, products);
     }
 };
 </script>
