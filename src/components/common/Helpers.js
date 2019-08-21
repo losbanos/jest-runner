@@ -239,7 +239,7 @@ go(
 log('------------------ Curry --------------');
 const curry = f => (a, ...rest) => rest.length ? f(a, ...rest) : (...rest1) => f(a, ...rest1);
 const c = curry((a, b) => a * b);
-log('---+++', c(10));
+// log('---+++', c(10));
 const reduce2 = curry((f, acc, iterable) => {
     let iterator;
     if (!iterable) {
@@ -283,30 +283,58 @@ const range = size => {
     let i = -1;
     const result = [];
     while (++i < size) {
-        log(i, 'range');
         result.push(i);
     }
     return result;
 };
-log(reduce(add, range(4)));
-// log(range(4));
+// log(reduce(add, range(4)));
 
 const L = {};
 L.range = function* (size) {
     let i = -1;
-    log('hi');
     while (++i < size) {
-        log(i, 'L. range');
         yield i;
     }
 };
 const list = L.range(4);
-log(list);
-log(list.next().value);
-log(list.next().value);
-log(list.next().value);
-log(list.next().value);
 // log(reduce(add, list));
+function test(name, time, f) {
+    console.time(name);
+    while (time--) {
+        f();
+    }
+    console.timeEnd(name);
+};
+// test('range', 10, () => reduce(add, range(100000)));
+// test('L.range', 10, () => reduce(add, L.range(100000)));
+console.clear();
+const take = curry((size, iterator) => {
+    const result = [];
+    for (const i of iterator) {
+        result.push(i);
+        if (result.length === size) {
+            return result;
+        }
+    }
+    return result;
+});
+
+console.time('a');
+go(
+    range(10000),
+    take(5),
+    reduce2(add),
+    log
+);
+console.timeEnd('a');
+console.time('b');
+go(
+    L.range(10000),
+    take(5),
+    reduce2(add),
+    log
+);
+console.timeEnd('b');
 export {
     filter2,
     map2,
