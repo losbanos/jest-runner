@@ -1,18 +1,22 @@
 module.exports = {
     root: true,
+
     env: {
         node: true,
         jest: true
     },
+
     extends: [
         'plugin:vue/essential',
         '@vue/airbnb',
+        '@vue/typescript'
     ],
+
     rules: {
         'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         'comma-dangle': [2, 'never'],
-        'import/extensions': [2, 'never'],
+        // 'import/extensions': [2, 'never'],
         'indent': [2, 4],
         'no-plusplus': [0, 'never'],
         'lines-between-class-members': [0],
@@ -23,7 +27,8 @@ module.exports = {
         'object-curly-spacing': ['error', 'never'],
         'arrow-parens': ['error', 'as-needed']
     },
+
     parserOptions: {
-        parser: 'babel-eslint',
-    },
+        parser: '@typescript-eslint/parser',
+    }
 };
