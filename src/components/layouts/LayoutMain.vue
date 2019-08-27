@@ -10,15 +10,15 @@
 </template>
 
 <script>
-import { LAYOUT_TYPES } from '@/components/common/constants';
-import CheckLanguage from '@/components/layouts/CheckLanguage';
-import Currency from '@/components/currency/Currency';
-import { onErrorImageLoad } from '@/components/currency/CurrencyUtil';
-// import { CallSwPersons } from '@/components/sw/CallStarWars';
+import {LAYOUT_TYPES} from '@/components/common/constants';
+import CheckLanguage from '@/components/layouts/CheckLanguage.vue';
+import Currency from '@/components/currency/Currency.vue';
+import {onErrorImageLoad} from '@/components/currency/CurrencyUtil';
+// import {CallSwPersons } from '@/components/sw/CallStarWars';
 
 export default {
     name: 'LayoutMain',
-    components: { Currency, CheckLanguage },
+    components: {Currency, CheckLanguage},
     data() {
         return {
             type: LAYOUT_TYPES.DEFAULT,

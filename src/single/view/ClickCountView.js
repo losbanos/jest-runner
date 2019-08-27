@@ -1,13 +1,14 @@
-export default function (clickCounter, { updateEl, triggerEl }) {
+export default function (clickCounter, {updateEl, triggerEl}) {
+    const updateElement = updateEl;
     if (!clickCounter) {
         throw Error('isNull');
     }
-    if (!updateEl) {
+    if (!updateElement) {
         throw Error('update Element is Null');
     }
     const view = {
         updateView() {
-            updateEl.innerHTML = clickCounter.getValue();
+            updateElement.innerHTML = clickCounter.getValue();
         },
         increaseAndUpdateView() {
             clickCounter.count();

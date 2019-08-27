@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { LANGUAGES } from '../common/constants';
+import {LANGUAGES} from '../common/constants';
 
 export default {
     name: 'CheckLayout',

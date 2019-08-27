@@ -12,9 +12,11 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "emitDecoratorMetadata": true,
     "types": [
       "webpack-env",
-      "jest"
+      "jest",
+      "reflect-metadata"
     ],
     "paths": {
       "@/*": [
@@ -33,7 +35,8 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx",
+    "types/vue-global.d.ts"
   ],
   "exclude": [
     "node_modules"

@@ -46,7 +46,7 @@ const ProductList = {
     render(h) {
         return go(
             products,
-            map2((prod) => {
+            map2(prod => {
                 const tds = [];
                 for (const [prop, value] of Object.entries(prod)) {
                     let child = value;

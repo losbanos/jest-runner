@@ -1,11 +1,11 @@
 <template>
     <div id="ioc">
-        TS
+        <Ninja></Ninja>
     </div>
 </template>
 
 <script lang="ts">
-import IocService from './service/IocService';
+import IocAppService from './service/IocAppService';
 
-export default IocService;
+export default IocAppService;
 </script>

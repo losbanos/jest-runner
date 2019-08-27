@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import CurrencyInput from '@/components/currency/CurrencyInput';
+import CurrencyInput from '@/components/currency/CurrencyInput.vue';
 
 export default {
     name: 'Currency',
-    components: { CurrencyInput },
+    components: {CurrencyInput},
     data() {
         return {
             price: 0,
