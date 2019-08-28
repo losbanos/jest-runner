@@ -5,7 +5,7 @@ import container from '@/components/common/DependencyContainer';
 import {Ninja as _Ninja} from '@/components/ioc/model/Warriors';
 
 @Component({
-    name: 'Ninja'
+    name: 'NinjaService'
 })
 export default class NinjaService extends Vue {
     warrior: string;
@@ -14,7 +14,6 @@ export default class NinjaService extends Vue {
 
     crated(): void {
         this._ninja = container.get<_Ninja>(ServiceIdentifier.WARRIOR);
-        console.log(this._ninja);
         this.warrior = this._ninja.name;
         this.weapon = this._ninja.weapon.name;
     }

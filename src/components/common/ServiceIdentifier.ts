@@ -1,6 +1,5 @@
-const SERVICE_IDENTIFIERS = {
+export default {
     WARRIOR: Symbol('Warrior'),
     WEAPON: Symbol('Weapon'),
     CONTAINER: Symbol('Container')
 };
-export default SERVICE_IDENTIFIERS;
