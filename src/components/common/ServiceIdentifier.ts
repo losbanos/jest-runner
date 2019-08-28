@@ -1,5 +1,5 @@
 export default {
-    WARRIOR: Symbol('Warrior'),
     WEAPON: Symbol('Weapon'),
+    WARRIOR: Symbol('Warrior'),
     CONTAINER: Symbol('Container')
 };

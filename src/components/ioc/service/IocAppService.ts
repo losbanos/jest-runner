@@ -9,5 +9,8 @@ import Ninja from '@/components/ioc/view/Ninja.vue';
     }
 })
 export default class IocAppService extends Vue {
-    message: string  = 'is IOC App Service By TS';
+    message: string = 'This is IocApp Service Message';
+    // created() {
+    //     console.log('this is IocApp Service created');
+    // }
 }

@@ -5,7 +5,7 @@
         <div>복수 언어 선택 : {{locale}}</div>
         <button id="btnStart" @click.prevent="onClickStart">Start</button>
         <currency></currency>
-        <img src="abc" @error="onErrorImageLoad($event, 'image')" >
+        <img src="" @error="onErrorImageLoad($event, 'image')" >
     </div>
 </template>
 
@@ -14,7 +14,7 @@ import {LAYOUT_TYPES} from '@/components/common/constants';
 import CheckLanguage from '@/components/layouts/CheckLanguage.vue';
 import Currency from '@/components/currency/Currency.vue';
 import {onErrorImageLoad} from '@/components/currency/CurrencyUtil';
-// import {CallSwPersons } from '@/components/sw/CallStarWars';
+// import {CallSwPersons} from '@/components/sw/CallStarWars';
 
 export default {
     name: 'LayoutMain',

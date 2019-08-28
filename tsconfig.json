@@ -10,9 +10,9 @@
     "allowJs": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "emitDecoratorMetadata": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "emitDecoratorMetadata": true,
     "types": [
       "webpack-env",
       "jest",

@@ -1,5 +1,5 @@
 import {injectable} from 'inversify';
-import IWeapon from '../interface/IWeapon';
+import IWeapon from '@/components/ioc/interface/IWeapon';
 
 @injectable()
 class Shuriken implements IWeapon {
@@ -7,7 +7,6 @@ class Shuriken implements IWeapon {
     public constructor() {
         this.name = 'Shuriken';
     }
-
 }
 
 @injectable()
@@ -21,4 +20,4 @@ class Katana implements IWeapon {
 export {
     Shuriken,
     Katana
-}
+};
