@@ -1,6 +1,7 @@
 <template>
     <div id="ioc">
-        <Ninja></Ninja>
+        <ninja></ninja>
+        <p>{{ message }}</p>
     </div>
 </template>
 

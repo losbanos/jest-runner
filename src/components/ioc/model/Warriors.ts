@@ -6,9 +6,11 @@ import SERVICE_IDENTIFIERS from '../../common/ServiceIdentifier';
 @injectable()
 class Ninja implements IWarrior {
     public name: string;
-    // public weapon: IWeapon;
+    public weapon: IWeapon;
 
-    public constructor(@inject(SERVICE_IDENTIFIERS.WEAPON) public weapon: IWeapon) {
+    public constructor(
+        @inject(SERVICE_IDENTIFIERS.WEAPON) weapon: IWeapon
+    ) {
         this.name = 'Ninja';
         this.weapon = weapon;
     }
@@ -17,7 +19,11 @@ class Ninja implements IWarrior {
 @injectable()
 class Samurai implements IWarrior {
     public name: string;
-    public constructor(@inject(SERVICE_IDENTIFIERS.WEAPON) public weapon: IWeapon) {
+    public weapon: IWeapon;
+
+    public constructor(
+        @inject(SERVICE_IDENTIFIERS.WEAPON) weapon: IWeapon
+    ) {
         this.name = 'Samurai';
         this.weapon = weapon;
     }

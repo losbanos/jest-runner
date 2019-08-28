@@ -1,4 +1,5 @@
-import {Component, Vue} from 'vue-property-decorator';
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import Ninja from '@/components/ioc/view/Ninja.vue';
 
 @Component({
