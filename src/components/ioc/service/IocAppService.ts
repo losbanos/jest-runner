@@ -13,4 +13,4 @@ export default class IocAppService extends Vue {
     // created() {
     //     console.log('this is IocApp Service created');
     // }
-}
+};
