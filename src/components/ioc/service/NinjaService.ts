@@ -16,5 +16,6 @@ export default class NinjaService extends Vue {
         this._ninja = container.get<_Ninja>(ServiceIdentifier.WARRIOR);
         this.weapon = this._ninja.weapon.name;
         this.warrior = this._ninja.name;
+        this._ninja.start();
     }
 }

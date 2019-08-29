@@ -2,11 +2,8 @@
     <div id="ioc">
         <ninja></ninja>
         <p>{{ message }}</p>
+        <samurai :shields="shields"></samurai>
     </div>
 </template>
 
-<script lang="ts">
-import IocAppService from './service/IocAppService';
-
-export default IocAppService;
-</script>
+<script lang="ts" src="./service/IocAppService.ts"></script>
