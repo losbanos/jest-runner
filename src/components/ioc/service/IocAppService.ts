@@ -21,4 +21,7 @@ function g() {
 export default class IocAppService extends Vue {
     message: string = 'This is IocApp Service Message';
     shields: Array<string> = [];
+    created() {
+        this.shields = ['1', '2', '3'];
+    }
 };

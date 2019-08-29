@@ -1,11 +1,11 @@
 import {Component, Vue, Prop} from 'vue-property-decorator';
 
-@Component()
+@Component
 export default class SamuraiService extends Vue {
     @Prop({
-        required: true
-    })
-    private shield: Array<string> = [];
+        required: true,
+        default: []
+    }) private shields!: Array<string>;
 
     private shieldName: string = '';
 
