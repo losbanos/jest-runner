@@ -18,7 +18,7 @@ class Helmet implements IShield {
 }
 
 @injectable()
-class Glove implements  IShield {
+class Glove implements IShield {
     public name: string;
     public defenseType: string;
     public price: number;
@@ -39,7 +39,6 @@ class Armor implements IShield {
     public defenseType: string;
     public price: number;
 
-    private isAttached: boolean = false;
     public constructor() {
         this.name = 'Armor';
         this.defenseType = 'defense';
@@ -53,4 +52,4 @@ export {
     Helmet,
     Glove,
     Armor
-}
+};

@@ -2,7 +2,7 @@
     <div id="ioc">
         <ninja></ninja>
         <p>{{ message }}</p>
-        <samurai :shields="shields"></samurai>
+        <samurai :shields="samuraiShields"></samurai>
     </div>
 </template>
 

@@ -1,3 +1,5 @@
 export default interface IWeapon {
-    name: string
+    name: string;
+    use: () => void;
+    abandon: () => void;
 };

@@ -3,7 +3,7 @@ import IWarrior from '@/components/ioc/interface/IWarrior';
 import IWeapon from '@/components/ioc/interface/IWeapon';
 import ServiceIdentifier from '@/components/common/ServiceIdentifier';
 import IShield from '@/components/ioc/interface/IShield';
-import {Armor, Glove} from '@/components/ioc/model/Shield';
+import {Armor, Glove, Helmet} from '@/components/ioc/model/Shield';
 
 @injectable()
 class Ninja implements IWarrior {
@@ -32,7 +32,8 @@ class Samurai implements IWarrior {
 
     public constructor(
         @inject(ServiceIdentifier.WEAPON) weapon: IWeapon,
-        @inject(ServiceIdentifier.ARMOR) armor: Armor
+        @inject(ServiceIdentifier.ARMOR) armor: Armor,
+        @inject(ServiceIdentifier.HELMET) helmet: Helmet
     ) {
         this.name = 'Samurai';
         this.weapon = weapon;
