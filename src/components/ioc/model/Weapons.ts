@@ -29,7 +29,7 @@ class Katana implements IWeapon {
     }
 }
 @injectable()
-class Sword implements  IWeapon {
+class Sword implements IWeapon {
     public name: string;
     public constructor() {
         this.name = 'Sword';
