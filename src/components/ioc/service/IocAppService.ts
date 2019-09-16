@@ -1,10 +1,10 @@
-import Vue from 'vue';
-import {Component} from 'vue-property-decorator';
+import {Component, Vue} from 'vue-property-decorator';
+import Warrior from '@/components/ioc/view/Warrior.vue';
 import {container, lazyInject} from '@/components/common/DependencyContainer';
-import Ninja from '@/components/ioc/view/Ninja.vue';
-import Samurai from '@/components/ioc/view/Samurai.vue';
-import {fromEvent, of} from 'rxjs';
 import ServiceIdentifier from '@/components/common/ServiceIdentifier';
+import IWeapon from '@/components/ioc/interface/IWeapon';
+import IShield from '@/components/ioc/interface/IShield';
+import {fromEvent, of} from 'rxjs';
 import StarWarsService from '@/components/ioc/service/StarWarsService';
 
 function f() {
@@ -18,8 +18,7 @@ function g() {
 @Component({
     name: 'IocAppService',
     components: {
-        Ninja,
-        Samurai
+        Warrior
     }
 })
 export default class IocAppService extends Vue {
@@ -27,10 +26,22 @@ export default class IocAppService extends Vue {
     private starWarsService!: StarWarsService;
 
     message: string = 'This is IocApp Service Message';
-    shields: Array<string> = [];
+    ninjaShields!: Array<IShield>;
+    ninjaWeapons!: Array<IWeapon>;
+    samuraiShields!: Array<IShield>;
+    samuraiWeapons!:Array<IWeapon>;
 
     created() {
-        this.shields = ['1', '2', '3'];
+        const glove = container.get<IShield>(ServiceIdentifier.GLOVE);
+        const helmet = container.get<IShield>(ServiceIdentifier.HELMET);
+        const armor = container.get<IShield>(ServiceIdentifier.ARMOR);
+        const sword = container.get<IWeapon>(ServiceIdentifier.SWORD);
+        const shuriken = container.get<IWeapon>(ServiceIdentifier.SHURIKEN);
+
+        this.ninjaShields = [armor];
+        this.ninjaWeapons = [shuriken];
+        this.samuraiShields = [glove, helmet];
+        this.samuraiWeapons = [sword]
     }
     protected mounted() {
         const click$ = fromEvent(document, 'click');

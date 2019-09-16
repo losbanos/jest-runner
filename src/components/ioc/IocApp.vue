@@ -1,8 +1,14 @@
 <template>
     <div id="ioc">
-        <ninja></ninja>
+        <warrior
+            :name="'ninja'"
+            :shields="ninjaShields"
+            :weapons="ninjaWeapons"></warrior>
         <p>{{ message }}</p>
-        <samurai :shields="shields"></samurai>
+        <warrior
+            :name="'samurai'"
+            :shields="samuraiShields"
+            :weapons="samuraiWeapons"></warrior>
         <ul id="users">
 
         </ul>

@@ -3,19 +3,19 @@ import IWarrior from '@/components/ioc/interface/IWarrior';
 import IWeapon from '@/components/ioc/interface/IWeapon';
 import ServiceIdentifier from '@/components/common/ServiceIdentifier';
 import IShield from '@/components/ioc/interface/IShield';
-import {Armor, Glove} from '@/components/ioc/model/Shield';
+import {Armor, Glove, Helmet} from '@/components/ioc/model/Shield';
 
 @injectable()
 class Ninja implements IWarrior {
-    public name: string;
+    public name!: string;
     public weapon: IWeapon;
     public shield: IShield;
 
     public constructor(
-        @inject(ServiceIdentifier.WEAPON) weapon: IWeapon,
+        @inject(ServiceIdentifier.SHURIKEN) weapon: IWeapon,
         @inject(ServiceIdentifier.GLOVE) glove: Glove
     ) {
-        this.name = 'Ninja';
+        // this.name = 'Ninja';
         this.weapon = weapon;
         this.shield = glove;
     }
@@ -26,15 +26,16 @@ class Ninja implements IWarrior {
 
 @injectable()
 class Samurai implements IWarrior {
-    public name: string;
+    public name!: string;
     public weapon: IWeapon;
     public shield: IShield;
 
     public constructor(
-        @inject(ServiceIdentifier.WEAPON) weapon: IWeapon,
-        @inject(ServiceIdentifier.ARMOR) armor: Armor
+        @inject(ServiceIdentifier.SWORD) weapon: IWeapon,
+        @inject(ServiceIdentifier.ARMOR) armor: Armor,
+        @inject(ServiceIdentifier.HELMET) helmet: Helmet
     ) {
-        this.name = 'Samurai';
+        // this.name = 'Samurai';
         this.weapon = weapon;
         this.shield = armor;
     }
