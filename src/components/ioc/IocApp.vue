@@ -3,6 +3,9 @@
         <ninja></ninja>
         <p>{{ message }}</p>
         <samurai :shields="shields"></samurai>
+        <ul id="users">
+
+        </ul>
     </div>
 </template>
 

@@ -4,5 +4,6 @@ export default {
     HELMET: Symbol('Helmet'),
     ARMOR: Symbol('Armor'),
     GLOVE: Symbol('Glove'),
-    CONTAINER: Symbol('Container')
+    CONTAINER: Symbol('Container'),
+    STARWARS: Symbol('StarWarsService')
 };
