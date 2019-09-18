@@ -7,5 +7,6 @@ export default {
     GLOVE: Symbol('Glove'),
     SWORD: Symbol('Sword'),
     CONTAINER: Symbol('Container'),
-    STARWARS: Symbol('StarWarsService')
+    STARWARS: Symbol('StarWarsService'),
+    RXJSSERVICE: Symbol('RxjsService')
 };
