@@ -12,6 +12,7 @@
         <ul id="users">
 
         </ul>
+        <button type="button" @click.prevent="onClickButton">Button</button>
     </div>
 </template>
 

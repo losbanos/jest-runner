@@ -45,11 +45,22 @@ export default class IocAppService extends Vue {
 
     }
     protected mounted() {
-        this.rxjsService.setClicked();
+        this.rxjsService.secondExec();
         // this.setStarWars();
     }
     protected setStarWars() {
         // console.log('starWarsService = ', this.starWarsService);
         this.starWarsService.getPeopleData();
+    }
+    protected onClickButton() {
+        this.rxjsService.setClicked().subscribe(
+            (v: EventTarget) => {
+                console.log('v = ', v);
+                this.rxjsService.setClickValue();
+            },
+            (e: any) => {
+                console.log('error = ', e);
+            }
+        );
     }
 }

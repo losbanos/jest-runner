@@ -1,4 +1,6 @@
-export const UserResponse = [
+import {UserInfo} from '@/components/ioc/interface/UserInfo';
+
+export const UserResponse: Array<UserInfo> = [
     {name: '유비', birthYear: 161, nationality: '촉'},
     {name: '손권', birthYear: 182, nationality: '오'},
     {name: '관우', birthYear: 160, nationality: '촉'},
@@ -6,4 +8,5 @@ export const UserResponse = [
     {name: '조조', birthYear: 155, nationality: '위'},
     {name: '손권', birthYear: 182, nationality: '오'},
 ];
+
 
