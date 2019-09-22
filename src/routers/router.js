@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import LayoutMain from '@/components/layouts/LayoutMain';
+import LayoutMain from '@/components/layouts/LayoutMain.vue';
 
 Vue.use(Router);
 
@@ -23,6 +23,10 @@ export default new Router({
             path: '/currency',
             name: 'currency',
             component: () => import('@/components/currency/Currency.vue')
+        }, {
+            path: '/auto',
+            name: 'auto',
+            component: () => import('@/components/auto/view/AutoComplete.vue')
         }
     ]
 });

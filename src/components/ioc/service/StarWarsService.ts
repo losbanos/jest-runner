@@ -1,4 +1,5 @@
 import {injectable} from 'inversify';
+
 interface User {
     height?: number;
     mass?: number;
@@ -15,10 +16,6 @@ interface StarWarsResponse {
 @injectable()
 export default class StarWarsService {
     private baseUrl: string = 'https://swapi.co/api/';
-
-    constructor() {
-
-    }
     public getPeopleData() {
         fetch(`${this.baseUrl}people/?format=json`)
             .then((res: any) => {
@@ -36,8 +33,8 @@ export default class StarWarsService {
     private getParsedJsonData(jsonData: StarWarsResponse): string {
         const htmls: Array<string> = [];
         return jsonData.results
-            .filter(user => /male|female/.test(user.gender))
-            .map(user => Object.assign(user, this.calc(user.height, user.mass, user.gender)))
+            .filter((user: any) => /male|female/.test(user.gender))
+            .map((user: any) => Object.assign(user, this.calc(user.height, user.mass, user.gender)))
             .reduce((acc: Array<string>, u: User): Array<string> => {
                 acc.push(this.makeHtml(u));
                 return acc;

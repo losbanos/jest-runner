@@ -8,5 +8,6 @@ export default {
     SWORD: Symbol('Sword'),
     CONTAINER: Symbol('Container'),
     STARWARS: Symbol('StarWarsService'),
-    RXJSSERVICE: Symbol('RxjsService')
+    RXJSSERVICE: Symbol('RxjsService'),
+    AutoCompleteService: Symbol('AutoCompleteService')
 };

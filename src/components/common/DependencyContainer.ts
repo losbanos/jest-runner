@@ -9,7 +9,8 @@ import {Shuriken, Sword} from '@/components/ioc/model/Weapons';
 import {Helmet, Glove, Armor} from '@/components/ioc/model/Shield';
 import IShield from '@/components/ioc/interface/IShield';
 import StarWarsService from '@/components/ioc/service/StarWarsService';
-import RxjsService from "@/components/ioc/service/RxjsService";
+import RxjsService from '@/components/ioc/service/RxjsService';
+import {AutoCompleteService} from '@/components/auto/service/AutoCompleteService';
 
 const container = new Container();
 container.bind<IWarrior>(ServiceIdentifier.NINJA).to(Ninja);
@@ -21,7 +22,7 @@ container.bind<IShield>(ServiceIdentifier.GLOVE).to(Glove);
 container.bind<IShield>(ServiceIdentifier.ARMOR).to(Armor);
 container.bind<StarWarsService>(ServiceIdentifier.STARWARS).to(StarWarsService);
 container.bind<RxjsService>(ServiceIdentifier.RXJSSERVICE).to(RxjsService);
-
+container.bind<AutoCompleteService>(ServiceIdentifier.AutoCompleteService).to(AutoCompleteService);
 const {lazyInject}: any = getDecorators(container);
 
 export {container, lazyInject};
