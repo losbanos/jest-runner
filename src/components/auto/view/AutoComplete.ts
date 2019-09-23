@@ -1,15 +1,26 @@
 import {Component, Vue} from 'vue-property-decorator';
+// import Vue from 'vue';
 import {lazyInject} from '@/components/common/DependencyContainer';
 import ServiceIdentifier from '@/components/common/ServiceIdentifier';
 import {AutoCompleteService} from '@/components/auto/service/AutoCompleteService';
+import {StarWarsPeople} from '@/components/auto/model/StarWarsResponse';
 
-@Component
+@Component({
+    name: 'AutoComplete'
+})
 export default class AutoComplete extends Vue {
     @lazyInject(ServiceIdentifier.AutoCompleteService) private autoCompleteService!: AutoCompleteService;
-    created() {
 
+    private results: Array<StarWarsPeople> = [];
+
+    created() {
     }
     mounted() {
-        this.autoCompleteService.setTargetElement(this.$refs.inp_search as HTMLElement);
+        this.autoCompleteService.getPeople(this.$refs.inp_search as HTMLElement).subscribe(
+            (v: any) => {
+                this.results = v;
+            },
+            e => console.log(e)
+        )
     }
 }
