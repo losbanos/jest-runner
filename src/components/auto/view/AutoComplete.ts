@@ -12,6 +12,7 @@ export default class AutoComplete extends Vue {
     @lazyInject(ServiceIdentifier.AutoCompleteService) private autoCompleteService!: AutoCompleteService;
 
     private results: Array<StarWarsPeople> = [];
+    private isProgress: boolean = false;
 
     created() {
     }
@@ -21,6 +22,12 @@ export default class AutoComplete extends Vue {
                 this.results = v;
             },
             e => console.log(e)
-        )
+        );
+        this.autoCompleteService.loadingBar$.subscribe(
+            v => {
+                this.isProgress = v
+            }
+        );
+        this.autoCompleteService.testSubject();
     }
 }
