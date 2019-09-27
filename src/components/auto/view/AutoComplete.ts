@@ -2,7 +2,7 @@ import {Component, Vue} from 'vue-property-decorator';
 // import Vue from 'vue';
 import {lazyInject} from '@/components/common/DependencyContainer';
 import ServiceIdentifier from '@/components/common/ServiceIdentifier';
-import {AutoCompleteService} from '@/components/auto/service/AutoCompleteService';
+import {AutoCompleteService} from '@/components/service/auto/AutoCompleteService';
 import {StarWarsPeople} from '@/components/auto/model/StarWarsResponse';
 
 @Component({
@@ -19,6 +19,7 @@ export default class AutoComplete extends Vue {
     mounted() {
         this.autoCompleteService.getPeople(this.$refs.inp_search as HTMLElement).subscribe(
             (v: any) => {
+                console.log('complete = ', v);
                 this.results = v;
             },
             e => console.log(e)
@@ -28,6 +29,11 @@ export default class AutoComplete extends Vue {
                 this.isProgress = v
             }
         );
-        this.autoCompleteService.testSubject();
+        this.autoCompleteService.resetStaus$.subscribe(
+            v => {
+                console.log('reset =- ', v);
+                this.results = v;
+            }
+        )
     }
 }

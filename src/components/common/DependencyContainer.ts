@@ -10,7 +10,7 @@ import {Helmet, Glove, Armor} from '@/components/ioc/model/Shield';
 import IShield from '@/components/ioc/interface/IShield';
 import StarWarsService from '@/components/ioc/service/StarWarsService';
 import RxjsService from '@/components/ioc/service/RxjsService';
-import {AutoCompleteService} from '@/components/auto/service/AutoCompleteService';
+import {AutoCompleteService} from '@/components/service/auto/AutoCompleteService';
 
 const container = new Container();
 container.bind<IWarrior>(ServiceIdentifier.NINJA).to(Ninja);
