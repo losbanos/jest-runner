@@ -1,3 +1,4 @@
+
 export default {
     NINJA: Symbol('Ninja'),
     SAMURAI: Symbol('Samurai'),
@@ -9,5 +10,7 @@ export default {
     CONTAINER: Symbol('Container'),
     STARWARS: Symbol('StarWarsService'),
     RXJSSERVICE: Symbol('RxjsService'),
-    AutoCompleteService: Symbol('AutoCompleteService')
+    AutoCompleteService: Symbol('AutoCompleteService'),
+    MultiUploadService: Symbol('MultiUploadService'),
+    TestOperatorService: Symbol('TestOperatorService')
 };

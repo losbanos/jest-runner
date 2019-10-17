@@ -12,22 +12,10 @@ export class AutoCompleteService {
 
     constructor() {
         // this.showLoadingBar();
+        console.log('init');
     }
     public getPeople(input: HTMLElement): Observable<any> {
         const {log, error} = console;
-
-        // const people$: Observable<StarWarsPeople> = fromEvent<KeyboardEvent>(input, 'keyup')
-        //     .pipe(
-        //         debounceTime(1000),
-        //         map((e: KeyboardEvent) => e.target.value),
-        //         distinctUntilChanged(),
-        //         filter((keyword: string) => keyword.trim().length > 0),
-        //         tap(() => this.loadingBarSubject.next(true)),
-        //         mergeMap((keyword: string) => ajax.getJSON(`${BASE_URL.SW}people/?search=${keyword}&format=json`)),
-        //         tap(() => this.loadingBarSubject.next(false)),
-        //         pluck('results'),
-        //     );
-        // return people$;
 
         const keyup$: Observable<string> = fromEvent<KeyboardEvent>(input, 'keyup').pipe(
             debounceTime(1000),

@@ -11,6 +11,8 @@ import IShield from '@/components/ioc/interface/IShield';
 import StarWarsService from '@/components/ioc/service/StarWarsService';
 import RxjsService from '@/components/ioc/service/RxjsService';
 import {AutoCompleteService} from '@/components/service/auto/AutoCompleteService';
+import {MultiUploadService} from '@/components/service/auto/MultiUploadService';
+import {TestOperatorService} from '@/components/service/manipulate/TestOperatorService';
 
 const container = new Container();
 container.bind<IWarrior>(ServiceIdentifier.NINJA).to(Ninja);
@@ -23,6 +25,8 @@ container.bind<IShield>(ServiceIdentifier.ARMOR).to(Armor);
 container.bind<StarWarsService>(ServiceIdentifier.STARWARS).to(StarWarsService);
 container.bind<RxjsService>(ServiceIdentifier.RXJSSERVICE).to(RxjsService);
 container.bind<AutoCompleteService>(ServiceIdentifier.AutoCompleteService).to(AutoCompleteService);
+container.bind<MultiUploadService>(ServiceIdentifier.MultiUploadService).to(MultiUploadService);
+container.bind<TestOperatorService>(ServiceIdentifier.TestOperatorService).to(TestOperatorService);
 const {lazyInject}: any = getDecorators(container);
 
 export {container, lazyInject};
