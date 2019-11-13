@@ -1,7 +1,7 @@
 import {injectable} from 'inversify';
-import {interval, Observer, Subject, Observable} from 'rxjs';
+import {interval, fromEvent, Observer, Subject, Observable} from 'rxjs';
 import {take} from 'rxjs/operators';
-import {tap} from 'rxjs/internal/operators';
+import {takeUntil, tap, takeLast, takeWhile, filter, skip, skipUntil, skipWhile} from 'rxjs/internal/operators';
 
 @injectable()
 export class TestOperatorService {
@@ -33,6 +33,8 @@ export class TestOperatorService {
         const {log, error} = console;
         const inter$: Observable<number> = interval(1000).pipe(take(5), tap((n => log(`tap ${n}`))));
         const subject: Subject<number> = new Subject<number>();
+        const sourceIntervalTime: number = 300;
+        const inter2$: Observable<number> = interval(sourceIntervalTime);
 
         const observerA: Observer<any> = {
             next: x => log(`Observer A ${x}`),
@@ -58,15 +60,20 @@ export class TestOperatorService {
 
         const hotObservable: any = createHotObserable(inter$, subject);
         hotObservable.subscribe(observerA);
-        log('observerA subscribe');
+        // log('observerA subscribe');
         hotObservable.subscribe(observerB);
-        log('observerB subscribe');
+        // log('observerB subscribe');
 
-        hotObservable.connect();
-        console.log('hotObservable connect');
-        setTimeout(() => {
-            hotObservable.subscribe(observerC);
-            log('observerC subscribe');
-        }, 2000)
+        // hotObservable.connect();
+        // console.log('hotObservable connect');
+        // setTimeout(() => {
+        //     hotObservable.subscribe(observerC);
+        //     log('observerC subscribe');
+        // }, 2000);
+
+        inter2$.pipe(
+            skipWhile(n => n < 7),
+            take(4)
+        ).subscribe(observerA)
     }
 }
