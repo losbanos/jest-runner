@@ -1,8 +1,14 @@
 import {injectable} from 'inversify';
-import {interval, fromEvent, Observer, Subject, Observable} from 'rxjs';
+import {interval, of, fromEvent, Observer, Subject, Observable, Subscriber, Subscription} from 'rxjs';
 import {take} from 'rxjs/operators';
-import {takeUntil, tap, takeLast, takeWhile, filter, skip, skipUntil, skipWhile} from 'rxjs/internal/operators';
+import {takeUntil, tap, map, takeLast, takeWhile, filter, skip, skipUntil, skipWhile} from 'rxjs/internal/operators';
+import {ValidateFileType} from '@/components/service/model/ValidateFileType';
 
+interface ValidFileType{
+    isValid?: boolean;
+    file?: File;
+    fileList?: FileList
+}
 @injectable()
 export class TestOperatorService {
     public testSubject() {
@@ -71,9 +77,43 @@ export class TestOperatorService {
         //     log('observerC subscribe');
         // }, 2000);
 
-        inter2$.pipe(
-            skipWhile(n => n < 7),
-            take(4)
-        ).subscribe(observerA)
+        // inter2$.pipe(
+        //     skipWhile(n => n < 7),
+        //     take(4)
+        // ).subscribe(observerA)
+    }
+
+    public validateImage<T>(rule: ValidFileType) {
+        return (source: Observable<T>) => {
+            return new Observable((observer: Subscriber) => {
+                const subscription: Subscription =
+            })
+        }
+    }
+
+    private validateSize(maxSize: number) {
+        return <T extends File>(source: Observable<T>) => {
+            return new Observable<string>(observer => {
+                return source.subscribe(
+                    (file: T) => {
+                        let result: string = 'File size is Passed';
+                        if (file.size > maxSize) {
+                            result = 'File size is Exceed';
+                        }
+                        observer.next(result)
+                    },
+                    (err: any) => observer.error(err),
+                    () => observer.complete()
+                )
+            })
+        }
+    }
+
+    private validateType(rules: Array<string>) {
+        return <T extends File>(source: Observable<T>) => {
+            return source.pipe(
+                filter((source: T) => rules.includes(source.type))
+            )
+        }
     }
 }

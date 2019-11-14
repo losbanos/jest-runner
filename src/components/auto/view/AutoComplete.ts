@@ -6,14 +6,19 @@ import {AutoCompleteService} from '@/components/service/auto/AutoCompleteService
 import {StarWarsPeople} from '@/components/auto/model/StarWarsResponse';
 import {MultiUploadService} from '@/components/service/auto/MultiUploadService';
 import {TestOperatorService} from '@/components/service/manipulate/TestOperatorService';
+import {fromEvent} from 'rxjs';
+import {pluck} from 'rxjs/internal/operators';
 
 @Component({
     name: 'AutoComplete'
 })
 export default class AutoComplete extends Vue {
-    @lazyInject(ServiceIdentifier.AutoCompleteService) private autoCompleteService!: AutoCompleteService;
-    @lazyInject(ServiceIdentifier.MultiUploadService) private multiUploadService!: MultiUploadService;
-    @lazyInject(ServiceIdentifier.TestOperatorService) private testOperatorService!: TestOperatorService;
+    @lazyInject(ServiceIdentifier.AutoCompleteService)
+    private autoCompleteService!: AutoCompleteService;
+    @lazyInject(ServiceIdentifier.MultiUploadService)
+    private multiUploadService!: MultiUploadService;
+    @lazyInject(ServiceIdentifier.TestOperatorService)
+    private testOperatorService!: TestOperatorService;
 
     private results: Array<StarWarsPeople> = [];
     private isProgress: boolean = false;
@@ -22,13 +27,6 @@ export default class AutoComplete extends Vue {
         this.testOperatorService.start();
     }
     mounted() {
-        // this.autoCompleteService.getPeople(this.$refs.inp_search as HTMLElement).subscribe(
-        //     (v: any) => {
-        //         console.log('complete = ', v);
-        //         this.results = v;
-        //     },
-        //     e => console.log(e)
-        // );
         this.autoCompleteService.loadingBar$.subscribe(
             v => {
                 this.isProgress = v
@@ -40,11 +38,15 @@ export default class AutoComplete extends Vue {
                 this.results = v;
             }
         );
-        // this.multiUploadService.load().subscribe(
-        //     v => {
-        //         console.log(v);
-        //         console.log('load complete');
-        //     }
-        // )
+
+        fromEvent((this.$refs as any).inp_file, 'change')
+            .pipe(
+                pluck('target', 'files')
+            )
+            .subscribe(
+                n => console.log(n),
+                (err: any) => console.error(err),
+                () => console.log('complete')
+            )
     }
 }
