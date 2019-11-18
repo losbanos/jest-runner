@@ -1,13 +1,28 @@
 import {injectable} from 'inversify';
-import {interval, of, fromEvent, Observer, Subject, Observable, Subscriber, Subscription} from 'rxjs';
-import {take} from 'rxjs/operators';
+import {
+    interval,
+    of,
+    fromEvent,
+    Observer,
+    Subject,
+    Observable,
+    Subscriber,
+    Subscription,
+    MonoTypeOperatorFunction, OperatorFunction, Operator
+} from 'rxjs';
+import {take, find} from 'rxjs/operators';
 import {takeUntil, tap, map, takeLast, takeWhile, filter, skip, skipUntil, skipWhile} from 'rxjs/internal/operators';
 import {ValidateFileType} from '@/components/service/model/ValidateFileType';
+import {TeardownLogic} from 'rxjs/src/internal/types';
+import {ArgumentOutOfRangeError} from 'rxjs/src/internal/util/ArgumentOutOfRangeError';
 
 interface ValidFileType{
     isValid?: boolean;
     file?: File;
     fileList?: FileList
+}
+interface ValidateRule {
+
 }
 @injectable()
 export class TestOperatorService {
@@ -83,37 +98,112 @@ export class TestOperatorService {
         // ).subscribe(observerA)
     }
 
-    public validateImage<T>(rule: ValidFileType) {
+    public validateImage<T>(rule: {maxSize: number, types: Array<string>}): MonoTypeOperatorFunction<T> {
         return (source: Observable<T>) => {
-            return new Observable((observer: Subscriber) => {
-                const subscription: Subscription =
+            return new Observable<any>((observer: Subscriber<any>) => {
+                return source.pipe(
+                    this.validateType(rule.types),
+                    this.validateSize(rule.maxSize),
+                ).subscribe(
+                    (result: T) => {
+                        observer.next(result);
+                    },
+                    (err: any) => {
+                        console.log('에러야');
+                        observer.error(err)
+                    },
+                    () => {
+                        console.log('ValidateImage is Complete');
+                    }
+                );
             })
         }
     }
 
-    private validateSize(maxSize: number) {
-        return <T extends File>(source: Observable<T>) => {
-            return new Observable<string>(observer => {
-                return source.subscribe(
-                    (file: T) => {
-                        let result: string = 'File size is Passed';
-                        if (file.size > maxSize) {
-                            result = 'File size is Exceed';
+    public validateSize<T>(maxSize: number): MonoTypeOperatorFunction<T> {
+        return (source: Observable<T>) => {
+            return new Observable<T>((observer: Subscriber<T>) => {
+                return source.pipe(take(1)).subscribe(
+                    (fileList: T) => {
+                        if ((fileList as any).item(0).size < maxSize) {
+                            observer.next(fileList)
+                        } else {
+                            observer.error(new Error('File Size is Exceed'))
                         }
-                        observer.next(result)
+                    },
+                    (err: any) => {
+                        observer.error(err);
+                    },
+                    () => {
+                        console.log('Validate Size Complete');
+                        observer.complete()
+                    }
+                )
+            });
+        }
+    }
+
+    public validateType<T>(rules: Array<string>): MonoTypeOperatorFunction<T> {
+        return (source: Observable<T>) => {
+            return new Observable((observer: Subscriber<T>) => {
+                return source.pipe(take(1)).subscribe(
+                    (fileList: T) => {
+                        const fileType: string = (fileList as any)[0].type;
+                        if (rules.includes(fileType)) {
+                            observer.next(fileList)
+                        } else {
+                            observer.error(new Error('JPG, PNG, GIF 만 지원한다.'));
+                        }
                     },
                     (err: any) => observer.error(err),
-                    () => observer.complete()
-                )
+                    () => {
+                        console.log('ValidateType complete');
+                        observer.complete()
+                    }
+                );
             })
         }
     }
+}
+// class TakeOperator<T> implements Operator<T, T> {
+//     constructor(private total: number) {
+//         if (this.total < 0) {
+//             throw new ArgumentOutOfRangeError;
+//         }
+//     }
+//
+//     call(subscriber: Subscriber<T>, source: any): TeardownLogic {
+//         return source.subscribe(new TakeSubscriber(subscriber, this.total));
+//     }
+// }
+class Validate<T>{
+    constructor(private maxSize: number) {
+        if (maxSize < 0) {
+            throw new Error('no count');
+        }
+    }
+    call(subscriber: Subscriber<T>, source: any): TeardownLogic {
+        console.log('calling = ', source);
+        return source.subscribe(new ValidateSize(subscriber, this.maxSize));
+    }
+}
 
-    private validateType(rules: Array<string>) {
-        return <T extends File>(source: Observable<T>) => {
-            return source.pipe(
-                filter((source: T) => rules.includes(source.type))
-            )
+class ValidateSize<T> extends Subscriber<T> {
+    private count: number = 0;
+
+    constructor(destination: Subscriber<T>, private total: number) {
+        super(destination);
+    }
+
+    protected _next(value: T): void {
+        const total = this.total;
+        const count = ++this.count;
+        if (count <= total) {
+            this.destination.next(value);
+            if (count === total) {
+                this.destination.complete();
+                this.unsubscribe();
+            }
         }
     }
 }

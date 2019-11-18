@@ -7,7 +7,7 @@ import {StarWarsPeople} from '@/components/auto/model/StarWarsResponse';
 import {MultiUploadService} from '@/components/service/auto/MultiUploadService';
 import {TestOperatorService} from '@/components/service/manipulate/TestOperatorService';
 import {fromEvent} from 'rxjs';
-import {pluck} from 'rxjs/internal/operators';
+import {pluck, take} from 'rxjs/internal/operators';
 
 @Component({
     name: 'AutoComplete'
@@ -41,10 +41,13 @@ export default class AutoComplete extends Vue {
 
         fromEvent((this.$refs as any).inp_file, 'change')
             .pipe(
-                pluck('target', 'files')
+                pluck('target', 'files'),
+                this.testOperatorService.validateType(['image/png', 'image/gif', 'image/jpg', 'image/jpeg']),
+                this.testOperatorService.validateSize(1024 ** 2),
+                take(1)
             )
             .subscribe(
-                n => console.log(n),
+                n => console.log('from Event NEXT = ', n),
                 (err: any) => console.error(err),
                 () => console.log('complete')
             )

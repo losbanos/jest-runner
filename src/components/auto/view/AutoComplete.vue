@@ -10,7 +10,7 @@
             </li>
         </ul>
         <a v-if="isProgress" class="button is-loading" id="loading_bar">Loading</a>
-        <input type="file" accept="image/jpg, image/png, image/gif" id="inp_file" ref="inp_file"/>
+        <input type="file" accept="*/*" id="inp_file" ref="inp_file"/>
     </div>
 </template>
 <script lang="ts" src="./AutoComplete.ts"></script>
