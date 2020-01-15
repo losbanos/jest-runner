@@ -9,7 +9,7 @@ export default class RxjsService {
     public isClicked: boolean = true;
     public click$!: Observable<EventTarget>;
     constructor() {
-
+        // tslint:disable:no-useless-constructor;
     }
     public setClicked(): Observable<EventTarget> | any {
         this.click$ = fromEvent<EventTarget>(document, 'click').pipe(

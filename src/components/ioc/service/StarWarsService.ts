@@ -27,7 +27,7 @@ export default class StarWarsService {
                 }
             })
             .then((jsonData: any) => {
-                document.querySelector('#users').innerHTML = this.getParsedJsonData(jsonData);
+                (document as any).querySelector('#users').innerHTML = this.getParsedJsonData(jsonData);
             })
     }
     private getParsedJsonData(jsonData: StarWarsResponse): string {

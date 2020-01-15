@@ -1,7 +1,7 @@
-const { log, dir } = console;
+const {log, dir} = console;
 log('-------------FOR----------');
 const arr = [1, 2, 3];
-let itrArr = arr[Symbol.iterator]();
+const itrArr = arr[Symbol.iterator]();
 itrArr.next();
 itrArr.next();
 itrArr.next();
@@ -41,7 +41,7 @@ const iterableCustom = {
         let i = 3;
         return {
             next() {
-                return i === 0 ? { value: undefined, done: true } : {
+                return i === 0 ? {value: undefined, done: true} : {
                     value: i--,
                     done: false
                 };
@@ -88,7 +88,8 @@ for (const c of gener()) {
 }
 // log('------------------Infinity-------------');
 function* infinity(i = 0) {
-    while (true) yield i++;
+    let a = i;
+    while (true) yield a++;
 }
 const infInter = infinity(1);
 // log(infInter.next());
@@ -114,11 +115,11 @@ const [head, middle, ...tail] = odds(15);
 // log(tail);
 log('------------------define map function -------------');
 const products = [
-    { name: '반팔티', price: 15000 },
-    { name: '긴팔티', price: 24000 },
-    { name: 'T셔츠', price: 30000 },
-    { name: '반바지', price: 17000 },
-    { name: '핸드폰케이스', price: 25000 }
+    {name: '반팔티', price: 15000},
+    {name: '긴팔티', price: 24000},
+    {name: 'T셔츠', price: 30000},
+    {name: '반바지', price: 17000},
+    {name: '핸드폰케이스', price: 2500}
 ];
 const map = (func, iterator) => {
     const result = [];
@@ -129,7 +130,7 @@ const map = (func, iterator) => {
 };
 if (!global) {
     log(map(el => el.nodeName), document.querySelectorAll('*'));
-};
+}
 if (!global) {
     const els = document.querySelectorAll('*')[Symbol.iterator]();
     // log(els.next());
@@ -140,7 +141,7 @@ function* htmlElement() {
     yield 2;
     if (false) yield 4;
     yield 5;
-};
+}
 
 // log(map(n => n * 2, htmlElement()));
 
@@ -166,10 +167,10 @@ const filter = (predicate, iterator) => {
     return result;
 };
 const over20000 = filter(p => p.price > 20000, (function* () {
-    yield { price: 10000 };
-    yield { price: 20000 };
-    yield { price: 30000 };
-    yield { price: 40000 };
+    yield {price: 10000};
+    yield {price: 20000};
+    yield {price: 30000};
+    yield {price: 40000};
 }()));
 
 // log('over 2000 = ', over20000);
@@ -181,12 +182,13 @@ const reduce = (f, acc, iterable) => {
     let iterator;
     if (!iterable) {
         iterator = acc[Symbol.iterator]();
+        // eslint-disable-next-line
         acc = iterator.next().value;
     } else {
         iterator = iterable;
     }
     for (const n of iterator) {
-        acc = f(acc, n);
+        acc = f(acc, n);// eslint-disable-line
     }
     return acc;
 };
@@ -237,6 +239,7 @@ go(
 );
 
 log('------------------ Curry --------------');
+// eslint-disable-next-line
 const curry = f => (a, ...rest) => rest.length ? f(a, ...rest) : (...rest1) => f(a, ...rest1);
 const c = curry((a, b) => a * b);
 // log('---+++', c(10));
@@ -244,12 +247,12 @@ const reduce2 = curry((f, acc, iterable) => {
     let iterator;
     if (!iterable) {
         iterator = acc[Symbol.iterator]();
-        acc = iterator.next().value;
+        acc = iterator.next().value; // eslint-disable-line
     } else {
         iterator = iterable;
     }
     for (const n of iterator) {
-        acc = f(acc, n);
+        acc = f(acc, n); // eslint-disable-line
     }
     return acc;
 });
@@ -261,7 +264,7 @@ const filter2 = curry((predicate, iterator) => {
         }
     }
     return result;
-})
+});
 
 const map2 = curry((func, iterator) => {
     const result = [];
@@ -300,11 +303,12 @@ const list = L.range(4);
 // log(reduce(add, list));
 function test(name, time, f) {
     console.time(name);
+    // eslint-disable-next-line
     while (time--) {
         f();
     }
     console.timeEnd(name);
-};
+}
 // test('range', 10, () => reduce(add, range(100000)));
 // test('L.range', 10, () => reduce(add, L.range(100000)));
 console.clear();

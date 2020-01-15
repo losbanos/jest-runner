@@ -176,34 +176,3 @@ export class TestOperatorService {
 //         return source.subscribe(new TakeSubscriber(subscriber, this.total));
 //     }
 // }
-class Validate<T>{
-    constructor(private maxSize: number) {
-        if (maxSize < 0) {
-            throw new Error('no count');
-        }
-    }
-    call(subscriber: Subscriber<T>, source: any): TeardownLogic {
-        console.log('calling = ', source);
-        return source.subscribe(new ValidateSize(subscriber, this.maxSize));
-    }
-}
-
-class ValidateSize<T> extends Subscriber<T> {
-    private count: number = 0;
-
-    constructor(destination: Subscriber<T>, private total: number) {
-        super(destination);
-    }
-
-    protected _next(value: T): void {
-        const total = this.total;
-        const count = ++this.count;
-        if (count <= total) {
-            this.destination.next(value);
-            if (count === total) {
-                this.destination.complete();
-                this.unsubscribe();
-            }
-        }
-    }
-}

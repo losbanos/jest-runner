@@ -21,7 +21,7 @@ export class MultiUploadService {
 
         // const luke$: Observable<any> =
         return ajax.getJSON(`https://swapi.co/api/?format=json`).pipe(
-            switchMap(res => of(res.people)),
+            switchMap((res:any) => of(res.people)),
             switchMap(baseUrl => {
                 return from(querys).pipe(
                     map((query => {

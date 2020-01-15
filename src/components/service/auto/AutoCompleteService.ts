@@ -19,7 +19,7 @@ export class AutoCompleteService {
 
         const keyup$: Observable<string> = fromEvent<KeyboardEvent>(input, 'keyup').pipe(
             debounceTime(1000),
-            map((e: KeyboardEvent) => e.target.value),
+            map((e: any) => e.target.value),
             distinctUntilChanged()
         );
 
