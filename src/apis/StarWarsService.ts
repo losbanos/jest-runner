@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {BaseUrl} from '@/components/enum/BaseUrl';
+import {BaseUrl} from 'src/enum/BaseUrl';
 
 export default class StarWarsService {
     public pokemon(): void {

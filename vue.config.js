@@ -42,7 +42,9 @@ module.exports = {
     chainWebpack: config => {
         config.resolve.alias.set('@components', path.resolve(__dirname, 'src/components'));
         config.resolve.alias.set('@services', path.resolve(__dirname, 'src/services'));
-        config.resolve.alias.set('@views', path.resolve(__dirname, 'src/views'));
+        config.resolve.alias.set('@apis', path.resolve(__dirname, 'src/views'));
+        config.resolve.alias.set('@enum', path.resolve(__dirname, 'src/enum'));
+        // config.resolve.alias.set('@apis', path.resolve(__dirname, 'src/apis'));
         return config;
     }
 };

@@ -27,6 +27,10 @@ export default new Router({
             path: '/auto',
             name: 'auto',
             component: () => import('@/components/auto/view/AutoComplete.vue')
+        }, {
+            path: '/poke',
+            name: 'PokeView',
+            component: () => import('@views/poke/PokeView.vue')
         }
     ]
 });

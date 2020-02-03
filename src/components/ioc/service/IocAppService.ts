@@ -5,7 +5,7 @@ import ServiceIdentifier from '@/components/common/ServiceIdentifier';
 import IWeapon from '@/components/ioc/interface/IWeapon';
 import IShield from '@/components/ioc/interface/IShield';
 import StarWarsService from '@/components/ioc/service/StarWarsService';
-import RxjsService from "@/components/ioc/service/RxjsService";
+import RxjsService from '@/components/ioc/service/RxjsService';
 
 function f() {
     return function (target: any, propertyKey: string, descriptor: any) {

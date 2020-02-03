@@ -110,13 +110,13 @@ export class TestOperatorService {
                     },
                     (err: any) => {
                         console.log('에러야');
-                        observer.error(err)
+                        observer.error(err);
                     },
                     () => {
                         console.log('ValidateImage is Complete');
                     }
                 );
-            })
+            });
         }
     }
 
@@ -126,7 +126,7 @@ export class TestOperatorService {
                 return source.pipe(take(1)).subscribe(
                     (fileList: T) => {
                         if ((fileList as any).item(0).size < maxSize) {
-                            observer.next(fileList)
+                            observer.next(fileList);
                         } else {
                             observer.error(new Error('File Size is Exceed'))
                         }
@@ -136,7 +136,7 @@ export class TestOperatorService {
                     },
                     () => {
                         console.log('Validate Size Complete');
-                        observer.complete()
+                        observer.complete();
                     }
                 )
             });
@@ -150,7 +150,7 @@ export class TestOperatorService {
                     (fileList: T) => {
                         const fileType: string = (fileList as any)[0].type;
                         if (rules.includes(fileType)) {
-                            observer.next(fileList)
+                            observer.next(fileList);
                         } else {
                             observer.error(new Error('JPG, PNG, GIF 만 지원한다.'));
                         }
@@ -158,21 +158,10 @@ export class TestOperatorService {
                     (err: any) => observer.error(err),
                     () => {
                         console.log('ValidateType complete');
-                        observer.complete()
+                        observer.complete();
                     }
                 );
-            })
+            });
         }
     }
 }
-// class TakeOperator<T> implements Operator<T, T> {
-//     constructor(private total: number) {
-//         if (this.total < 0) {
-//             throw new ArgumentOutOfRangeError;
-//         }
-//     }
-//
-//     call(subscriber: Subscriber<T>, source: any): TeardownLogic {
-//         return source.subscribe(new TakeSubscriber(subscriber, this.total));
-//     }
-// }
