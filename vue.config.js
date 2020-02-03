@@ -38,5 +38,11 @@ module.exports = {
                 {from: /./, to: path.posix.join('/', 'index.html')}
             ]
         }
+    },
+    chainWebpack: config => {
+        config.resolve.alias.set('@components', path.resolve(__dirname, 'src/components'));
+        config.resolve.alias.set('@services', path.resolve(__dirname, 'src/services'));
+        config.resolve.alias.set('@views', path.resolve(__dirname, 'src/views'));
+        return config;
     }
 };
