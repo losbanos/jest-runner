@@ -1,4 +1,4 @@
-<mxfile host="www.draw.io" modified="2020-02-11T15:40:09.217Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36" etag="xibaR1QG7CYgxz2lCID-" version="12.6.7" type="github">
+<mxfile host="www.draw.io" modified="2020-02-11T15:46:44.671Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36" etag="BjqpMWi9KY6Q8Rm1oQUv" version="12.6.7" type="github">
   <diagram name="Page-1" id="2c4490ee-f0b8-94ab-5012-d5dc3445f7a3">
     <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="0" arrows="1" fold="1" page="1" pageScale="1.5" pageWidth="1169" pageHeight="826" background="#ffffff" math="0" shadow="0">
       <root>
@@ -760,53 +760,23 @@
         <mxCell id="7a8b956e7d50b54d-161" value="W4" style="strokeWidth=1;fontStyle=0;html=1;" parent="1" vertex="1">
           <mxGeometry x="1570" y="150" width="30" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="7a8b956e7d50b54d-353" value="Task 1" style="align=left;strokeColor=#6c8ebf;html=1;fillColor=#dae8fc;" parent="1" vertex="1">
-          <mxGeometry x="160" y="170" width="90" height="20" as="geometry"/>
-        </mxCell>
-        <mxCell id="7a8b956e7d50b54d-354" value="Task 2" style="align=left;strokeColor=#6c8ebf;html=1;fillColor=#dae8fc;" parent="1" vertex="1">
-          <mxGeometry x="250" y="190" width="60" height="20" as="geometry"/>
-        </mxCell>
         <mxCell id="7a8b956e7d50b54d-355" value="기획 개발 협의" style="align=left;strokeColor=#6c8ebf;html=1;fillColor=#dae8fc;" parent="1" vertex="1">
           <mxGeometry x="310" y="210" width="90" height="20" as="geometry"/>
         </mxCell>
         <mxCell id="7a8b956e7d50b54d-356" value="게임 등록 프로세스 구축" style="align=left;strokeColor=#6c8ebf;html=1;fillColor=#dae8fc;" parent="1" vertex="1">
-          <mxGeometry x="400" y="230" width="240" height="20" as="geometry"/>
+          <mxGeometry x="400" y="230" width="180" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="7a8b956e7d50b54d-357" value="Task 5" style="align=left;strokeColor=#6c8ebf;html=1;fillColor=#dae8fc;" parent="1" vertex="1">
-          <mxGeometry x="370" y="250" width="60" height="20" as="geometry"/>
+        <mxCell id="7a8b956e7d50b54d-357" value="등록 게임 노출- 상세/메인" style="align=left;strokeColor=#6c8ebf;html=1;fillColor=#dae8fc;fontSize=10;" parent="1" vertex="1">
+          <mxGeometry x="580" y="250" width="120" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="7a8b956e7d50b54d-358" value="Task 6" style="align=left;strokeColor=#6c8ebf;html=1;fillColor=#dae8fc;" parent="1" vertex="1">
-          <mxGeometry x="430" y="270" width="180" height="20" as="geometry"/>
+        <mxCell id="7a8b956e7d50b54d-358" value="게임 판매" style="align=left;strokeColor=#6c8ebf;html=1;fillColor=#dae8fc;" parent="1" vertex="1">
+          <mxGeometry x="400" y="270" width="60" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="7a8b956e7d50b54d-359" value="Task 7" style="align=left;strokeColor=#6c8ebf;html=1;fillColor=#dae8fc;" parent="1" vertex="1">
-          <mxGeometry x="610" y="290" width="150" height="20" as="geometry"/>
+        <mxCell id="7a8b956e7d50b54d-359" value="커뮤니티 - 잡/채용공고/포럼" style="align=left;strokeColor=#6c8ebf;html=1;fillColor=#dae8fc;" parent="1" vertex="1">
+          <mxGeometry x="700" y="270" width="180" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="7a8b956e7d50b54d-360" value="Task 8" style="align=left;strokeColor=#6c8ebf;html=1;fillColor=#dae8fc;" parent="1" vertex="1">
-          <mxGeometry x="760" y="310" width="60" height="20" as="geometry"/>
-        </mxCell>
-        <mxCell id="7a8b956e7d50b54d-361" value="Task 9" style="align=left;strokeColor=#6c8ebf;html=1;fillColor=#dae8fc;" parent="1" vertex="1">
-          <mxGeometry x="760" y="330" width="60" height="20" as="geometry"/>
-        </mxCell>
-        <mxCell id="7a8b956e7d50b54d-362" value="Task 10" style="align=left;strokeColor=#6c8ebf;html=1;fillColor=#dae8fc;" parent="1" vertex="1">
-          <mxGeometry x="760" y="350" width="60" height="20" as="geometry"/>
-        </mxCell>
-        <mxCell id="7a8b956e7d50b54d-363" value="Task 11" style="align=left;strokeColor=#6c8ebf;html=1;fillColor=#dae8fc;" parent="1" vertex="1">
-          <mxGeometry x="820" y="370" width="150" height="20" as="geometry"/>
-        </mxCell>
-        <mxCell id="7a8b956e7d50b54d-364" value="Task 12" style="align=left;strokeColor=#6c8ebf;html=1;fillColor=#dae8fc;" parent="1" vertex="1">
-          <mxGeometry x="970" y="390" width="90" height="20" as="geometry"/>
-        </mxCell>
-        <mxCell id="7a8b956e7d50b54d-365" value="Task 13" style="align=left;strokeColor=#6c8ebf;html=1;fillColor=#dae8fc;" parent="1" vertex="1">
-          <mxGeometry x="1060" y="410" width="90" height="20" as="geometry"/>
-        </mxCell>
-        <mxCell id="7a8b956e7d50b54d-366" value="Task 14" style="align=left;strokeColor=#6c8ebf;html=1;fillColor=#dae8fc;" parent="1" vertex="1">
-          <mxGeometry x="1060" y="430" width="90" height="20" as="geometry"/>
-        </mxCell>
-        <mxCell id="7a8b956e7d50b54d-367" value="Task 15" style="align=left;strokeColor=#6c8ebf;html=1;fillColor=#dae8fc;" parent="1" vertex="1">
-          <mxGeometry x="1150" y="450" width="210" height="20" as="geometry"/>
-        </mxCell>
-        <mxCell id="7a8b956e7d50b54d-368" value="Task 16" style="align=left;strokeColor=#6c8ebf;html=1;fillColor=#dae8fc;" parent="1" vertex="1">
-          <mxGeometry x="1360" y="470" width="120" height="20" as="geometry"/>
+        <mxCell id="7a8b956e7d50b54d-360" value="개발자 페이지 구현" style="align=left;strokeColor=#6c8ebf;html=1;fillColor=#dae8fc;" parent="1" vertex="1">
+          <mxGeometry x="880" y="290" width="90" height="20" as="geometry"/>
         </mxCell>
       </root>
     </mxGraphModel>
